@@ -1149,3 +1149,10 @@ spec:
 ---
 
 > Reuse and adapt. For official implementation details or Azure deployments, consult Microsoft Learn and linked documentation above.
+
+<!-- START BADGE -->
+<div align="center">
+  <img src="https://img.shields.io/badge/Total%20views-1341-limegreen" alt="Total views">
+  <p>Refresh Date: 2025-08-18</p>
+</div>
+<!-- END BADGE -->
