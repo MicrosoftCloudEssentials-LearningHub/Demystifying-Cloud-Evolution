@@ -36,7 +36,7 @@ Last updated: 2025-07-30
 <details>
 <summary><b>Table of Contents</b> (Click to expand)</summary>
 
-- [History → Cloud → Azure](#history-%E2%86%92-cloud-%E2%86%92-azure)
+- [History → Cloud → Azure](#history-cloud-azure)
     - [Early Computing Era 1801-1843](#early-computing-era-1801-1843)
     - [Formal Foundations 1936-1945](#formal-foundations-1936-1945)
     - [PC & Internet Revolution 1950s-1990](#pc--internet-revolution-1950s-1990)
@@ -53,7 +53,7 @@ Last updated: 2025-07-30
 
 </details>
 
-## History → Cloud → Azure 
+## History - Cloud - Azure 
 
 > `Why There’s Not Enough Quota/Capacity for Some Cloud Services in Some Regions?`
 
@@ -1482,7 +1482,7 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1338-limegreen" alt="Total views">
+  <img src="https://img.shields.io/badge/Total%20views-1332-limegreen" alt="Total views">
   <p>Refresh Date: 2025-08-20</p>
 </div>
 <!-- END BADGE -->
