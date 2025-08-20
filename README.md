@@ -195,20 +195,106 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
 <details>
   <summary><b>Zuse Z3 (1941)</b></summary>
 
+> The Z3 achieved its historical significance despite being built in relative isolation during wartime Germany with limited resources. Zuse had to use telephone relays because vacuum tubes were unavailable to him for military reasons.
+
 - **Konrad Zuse**: German engineer who built the first programmable, fully automatic digital computer
-- **Technical features**: Used 2,600 relays, binary floating-point numbers, 22-bit word length
-- **Limitations**: No conditional branching capability (had to be simulated through multiple program paths)
-- **Significance**: First working programmable computer; operated at 5-10 Hz
+- **Technical Architecture**:
+  - **Computing Elements**: 2,600 telephone relays (600 for computing, 2,000 for memory)
+  - **Clock Speed**: 5-10 Hz (cycles per second)
+  - **Binary System**: First computer to use binary representation internally
+  - **Word Length**: 22 bits per word:
+    - 1 bit for sign
+    - 7 bits for exponent (with 3 as bias)
+    - 14 bits for mantissa
+  - **Memory**: 64 words of memory implemented as mechanical relays
+  - **Arithmetic Unit**: Separate circuits for addition/subtraction and multiplication/division
+- **Floating-Point Implementation**:
+  - First computer with implemented binary floating-point arithmetic
+  - Could represent numbers between ±10^-8.5 and ±10^8.5 with ~4 decimal precision
+  - Used two's complement for negative numbers
+  - Included special logic for detecting arithmetic exceptions (overflow/underflow)
+- **Programming System**:
+  - Programs stored on punched film (35mm discarded movie film)
+  - Instruction format: 8 bits total (2 for opcode, 6 for memory address)
+  - Only four operations: addition, subtraction, multiplication, division
+  - Input via decimal keyboard, output via decimal display lamps
+  - **Limitations**: No conditional branching capability (had to be simulated through multiple program paths)
+  - Program execution was linear with fixed sequence of operations
+- **Historical Context**:
+  - Operated during WWII but received little recognition until decades later
+  - Original machine destroyed in Allied bombing raid on Berlin in 1944
+  - Rebuilt in the 1960s for historical preservation
+  - In 1998, the Z3 was proven to be theoretically Turing-complete (could compute any algorithm) if equipped with infinite storage, despite lacking conditional branches
+- **Technical Significance**: 
+  - First working programmable computer
+  - First binary electronic computer
+  - First machine to use floating-point arithmetic
+  - First to separate control from computation
+  - Pioneered concepts that appeared independently years later in ENIAC and von Neumann architecture
 
 </details>
+
 
 <details>
   <summary><b>ENIAC (1945)</b></summary>
 
+> ENIAC's most significant technical limitation—the difficulty of reprogramming—directly inspired the stored-program concept central to modern computers. This limitation led John von Neumann to articulate the architecture that bears his name in the 1945 `First Draft of a Report on the EDVAC`, which became the blueprint for most subsequent computers.
+
 - **John Mauchly & J. Presper Eckert**: Led the engineering team at University of Pennsylvania
-- **Technical features**: 17,468 vacuum tubes, 5 million operations per second, 20 accumulators
-- **Programming**: Initially programmed by rewiring (took days); later modified for stored-program operation
-- **Applications**: Originally calculated artillery firing tables; later used for nuclear weapon design
+- **Physical Specifications**:
+  - **Size**: 30 tons, 1,800 square feet (167 m²)
+  - **Power Consumption**: 150 kilowatts
+  - **Components**: 17,468 vacuum tubes, 7,200 crystal diodes, 1,500 relays, 70,000 resistors, 10,000 capacitors
+  - **Clock Speed**: 100 kHz master clock
+  - **Mean Time Between Failures**: Initially about 5.6 hours (improved with experience)
+  - **Cost**: $487,000 in 1946 ($7.8 million in 2023 dollars)
+- **Technical Architecture**:
+  - **Numerical System**: Decimal (not binary) with 10-digit numbers
+  - **Memory**: 20 accumulators, each storing a signed 10-digit number and capable of addition/subtraction
+  - **Storage Capacity**: 200 decimal digits (equivalent to ~1000 bits)
+  - **Computation Units**:
+    - Cycling unit (master control)
+    - Initiating unit (program sequencer)
+    - Master programmer (loop control)
+    - 20 accumulators with dedicated adders
+    - Multiplier unit (used partial products method)
+    - Divider/Square-rooter unit
+    - Function tables for constant storage
+  - **Performance**: 5,000 additions per second; multiplication took 2.8ms (357 per second)
+- **Programming System**:
+  - **Original Method**: Manual rewiring using patch cables and function tables
+    - Required days to reprogram
+    - Six primary programmers (all women): Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Wescoff, Fran Bilas and Ruth Lichterman
+  - **Setup Process**:
+    1. Breaking down differential equations into discrete steps
+    2. Planning logical flow using paper diagrams
+    3. Manual configuration of cables, switches, and function table values
+    4. Operation required multiple people monitoring different sections
+  - **1948 Modification**:
+    - Converted to "stored-program" operation using function tables to store instructions
+    - Instructions read from punched IBM cards into function tables
+    - Pioneered concepts that influenced modern programming, though not a true stored-program computer
+- **Technical Innovations**:
+  - First large-scale electronic general-purpose digital computer
+  - Parallelism: could perform multiple operations simultaneously
+  - Separate units operating in parallel with centralized control
+  - Electronic digital pulse techniques for counting
+  - Novel circuits for arithmetic operations using vacuum tubes
+- **Applications**:
+  - Originally designed for calculating artillery firing tables for the U.S. Army
+  - Later used for nuclear weapon calculations (H-bomb development)
+  - Weather prediction computations
+  - Cosmic ray studies
+  - Thermal ignition research
+  - Random number studies
+  - Wind tunnel design
+- **Historical Impact**:
+  - Publicly unveiled in February 1946, making computing front-page news
+  - 1,000 times faster than electromechanical predecessors
+  - Operational until October 1955
+  - Demonstrated feasibility of large-scale electronic computing
+  - Directly influenced EDVAC, which formalized stored-program concept
+  - Inspired both commercial and scientific computing development
 
 </details>
 
