@@ -36,6 +36,13 @@ Last updated: 2025-07-30
 <details>
 <summary><b>Table of Contents</b> (Click to expand)</summary>
 
+- [History → Cloud → Azure](#history-%E2%86%92-cloud-%E2%86%92-azure)
+    - [Early Computing Era 1801-1843](#early-computing-era-1801-1843)
+    - [Formal Foundations 1936-1945](#formal-foundations-1936-1945)
+    - [PC & Internet Revolution 1950s-1990](#pc--internet-revolution-1950s-1990)
+    - [Cloud Computing Era 1990s-2010](#cloud-computing-era-1990s-2010)
+    - [Cloud-Native & Beyond 2013-Present](#cloud-native--beyond-2013-present)
+    - [Energy & Sustainability Milestones 1992-present](#energy--sustainability-milestones-1992-present)
 
 </details>
 
@@ -915,6 +922,8 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
     
 </details>
 
+
+
 ### Energy & Sustainability Milestones (1992-present)
 
 > Energy efficiency evolved from component-level to system-level to facility-level approaches:
@@ -927,10 +936,19 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 <details>
   <summary><b>ENERGY STAR Program (1992)</b></summary>
   
-- **Administrator**: U.S. Environmental Protection Agency
+- Administrator: U.S. EPA (Environmental Protection Agency) with U.S. DOE (Department of Energy) participation.
 - **Technical focus**: Energy consumption standards for computers, monitors
 - **Measurement methodology**: Standardized power consumption testing
 - **Impact**: Created baseline efficiency metrics for IT equipment
+- Scope evolution:
+  - Started with monitors/computers; later added servers, storage, networking gear, and data centers.
+  - Labeling indicates products meeting energy efficiency criteria under standardized tests.
+- Measurement methodology
+  - TEC (Typical Energy Consumption) models: integrates active/idle/sleep/off over a duty cycle to yield kWh/year.
+  - Server testing leverages SPEC SERT (Standard Performance Evaluation Corporation—Server Efficiency Rating Tool) to couple performance with power.
+  - Power states and sleep: wake latency and user experience constraints included in eligibility criteria.
+- Technical levers: Display power management (DPMS—Display Power Management Signaling), low‑power SoCs (Systems on Chip), aggressive idle states (C‑states) and frequency scaling (DVFS—Dynamic Voltage and Frequency Scaling).
+- Impact: Baselines for procurement; nudged component vendors toward better idle efficiency and automatic sleep policies.
 
 </details>
 
@@ -938,21 +956,27 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 <details>
     <summary><b>80 PLUS (2004)</b></summary>
 
-- **Focus**: Power Supply Unit efficiency certification
-- **Technical standards**: Efficiency targets at different load levels (20%, 50%, 100%)
-- **Tiers**: Standard, Bronze, Silver, Gold, Platinum, Titanium
-- **Significance**: Reduced energy waste in power conversion
+- Focus: PSU (Power Supply Unit) conversion efficiency and PF (Power Factor) at defined loads.
+- Technical standards:
+  - Tests at 115 V/230 V AC; load points typically 20%/50%/100% (Titanium adds 10%).
+  - Targets include minimum efficiency and PF ≥ 0.9 at 100% load (varies by tier/voltage).
+- Tiers: Standard → Bronze → Silver → Gold → Platinum → Titanium (tightening efficiency, especially at low load).
+- Design implications:
+  - Topologies: active PFC (Power Factor Correction), LLC (Inductor‑Inductor‑Capacitor) resonant converters, synchronous rectification to cut switching/conduction losses.
+  - Better efficiency curves reduce waste heat, fan speeds, and upstream cooling demand.
+- Ops note: Right‑sizing PSUs and running near the 30–60% `efficiency knee` avoids low‑load penalties; DC bus (e.g., 48 V) at rack scale reduces conversion stages.
 
 </details>
-
 
 <details>
     <summary><b>ASHRAE TC 9.9 Thermal Guidelines (2004)</b></summary>
 
-- **Technical focus**: Environmental specifications for datacenters
+- Technical focus: inlet environmental specs for IT gear; psychrometric (temperature/humidity) operating envelopes.
 - **Key innovation**: Standardized temperature and humidity ranges
-- **Classes**: A1-A4 with different allowable ranges
+- **Classes**: Recommended vs Allowable ranges; IT classes A1–A4 define maximum inlet temperatures and humidity/dew‑point limits (A3/A4 allow warmer/drier air).
 - **Impact**: Enabled higher operating temperatures, reduced cooling needs
+  - Enables economization (using outdoor air) and higher supply‑air setpoints, cutting chiller/CRAC (Computer Room Air Conditioner)/CRAH (Computer Room Air Handler) run time.
+  - Emphasizes airflow management (containment, blanking panels, leakage control) to keep inlets within spec.
 
 </details>
 
@@ -960,39 +984,54 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
     <summary><b>PUE Defined by The Green Grid (2007)</b></summary>
 
 - **Formula**: Total Facility Energy ÷ IT Equipment Energy
-- **Ideal value**: 1.0 (all energy goes to computing)
-- **Industry evolution**: Average PUE improved from ~2.0 to ~1.2 in hyperscale facilities
-- **Limitations**: Doesn't measure computational efficiency, only facility overhead
 
+   PUE = Total Facility Energy ÷ IT Equipment Energy; DCiE (Data Center infrastructure Efficiency) = 1 ÷ PUE
+
+- **Ideal value**: 1.0 (all energy goes to computing):
+  - Clarifies measurement boundaries and intervals; pPUE (partial PUE) for modules/containers.
+  - Related metrics: WUE (Water Usage Effectiveness), ERE (Energy Reuse Effectiveness) for heat reuse credit.
+- **Industry evolution**: Hyperscalers drove PUE from ~2.0 toward ~1.1–1.2 via economization, UPS (Uninterruptible Power Supply) optimization, and distribution efficiency.
+- **Limitations**:PUE captures facility overhead, not computational efficiency (e.g., work per joule at the server/application layer).
 </details>
 
 <details>
     <summary><b>Open Compute Project (2011)</b></summary>
 
-- **Founded by**: Facebook (now Meta)
-- **Technical innovations**: Open hardware designs for servers, storage, racks
+- **Founded by**: Facebook (now Meta) to open‑spec hyperscale hardware.
+- **Technical innovations**: Open hardware designs for servers, storage, racks:
+  - Open Rack (21‑inch) with 48 V busbar, blind‑mate power/network, serviceable sleds; ORv3 (Open Rack v3) for higher power density.
+  - OCP NIC 3.0 (Network Interface Card) form factor; OAM (Open Accelerator Module) for GPUs/accelerators; rack‑scale power shelves.
+  - Thermal: front‑to‑back airflow, tool‑less service, optimized heatsinks; liquid‑ready chassis options.
 - **Key contributions**: Simplified chassis, higher efficiency power systems, rack-scale designs
-- **Impact**: Standardized efficient designs across industry
+- **Impact**: Supply‑chain standardization; higher PSU and VRM (Voltage Regulator Module) efficiency; faster service times and better airflow containment.
+
 
 </details>
 
 <details>
     <summary><b>ASHRAE Widened Temperature Ranges (2015)</b></summary>
 
-- **Technical change**: Expanded recommended and allowable temperature ranges
-- **Impact**: Reduced cooling requirements, enabled more free cooling hours
+- **Technical change**: Expanded Recommended/Allowable envelopes (A1–A4) enabling higher server inlet temperatures; guidance on humidity/dew point to manage corrosion/ESD (Electrostatic Discharge).
+- **Impact**: Reduced cooling requirements, enabled more free cooling hours:
+  - More free‑cooling hours; reduced chiller hours; variable‑speed fans and setpoint optimization.
+  - Typical rule‑of‑thumb: a ~1 °C increase in supply air can save a few percent of cooling energy (facility‑dependent).
 - **Classes**: New A1-A4 classes with wider ranges for different equipment types
 - **Energy savings**: Up to 4% energy reduction per 1°C increase in setpoint
+- Risk management: Component derating and reliability modeling vs temperature (e.g., capacitor life, HDD: Hard Disk Drive error rates) to set safe upper limits.
 
 </details>
 
 <details>
     <summary><b>NVMe-oF 1.0 (2016)</b></summary>
 
-- **Technical innovation**: Extended NVMe over network fabrics (RDMA, FC, TCP)
+- **Technical innovation**: Extends NVMe queue model over networks using transports: RDMA (Remote Direct Memory Access: RoCE/iWARP), FC (Fibre Channel), and TCP (Transmission Control Protocol).
+- Preserves submission/completion queues, doorbells, and MSI‑X (Message Signaled Interrupts eXtended) semantics for low‑latency I/O (Input/Output).
 - **Energy efficiency**: Reduced CPU overhead for storage operations
-- **Performance**: Lower latency and higher IOPS per watt
-- **Impact**: Enabled disaggregation of storage resources
+- **Performance**: Lower latency and higher IOPS per watt.
+- Lower CPU cycles per I/O and microsecond‑level latencies; higher IOPS (Input/Output Operations per Second) per watt vs legacy stacks.
+- **Impact**: Enabled disaggregation of storage resources.
+  - JBOF (Just a Bunch Of Flash) and disaggregated storage pools
+  - Flexible scaling and better media utilization across hosts.
 
 </details>
 
@@ -1004,6 +1043,27 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 - **Implementation**: APIs for carbon intensity, scheduler plugins, policy engines
 - **Impact**: Shifting flexible workloads to times of abundant renewable energy
 
+- Signals and metrics:
+  - Carbon intensity (gCO₂/kWh: grams CO₂ per kilowatt-hour): average vs marginal; forecasts (24–72h) and real-time feeds by region/zone.
+  - Combine with PUE (Power Usage Effectiveness), WUE (Water Usage Effectiveness), and energy price to form a multi-objective score.
+- Workload classes:
+  - Deferrable (batch/ETL/ML training), geo-movable (stateless jobs), and latency-critical (pin, optimize rather than move).
+  - SLOs (Service Level Objectives) define what can be delayed or relocated without breaching latency/availability.
+- Scheduling patterns:
+  - Time shifting: cron windows aligned to low-carbon forecast bands; backoff and catch-up windows.
+  - Geo shifting: weighted queues or schedulers prefer cleaner regions; fallbacks when capacity or data-residency blocks moves.
+  - Admission control: policy engines gate non-urgent starts when carbon score is high.
+- Platform integration:
+  - Kubernetes: custom scheduler plugins, HPA (Horizontal Pod Autoscaler) with external carbon metrics, KEDA (Kubernetes-based Event-Driven Autoscaling) pause/resume.
+  - Queues: priority tiers (critical/standard/background) with carbon-aware dispatchers.
+  - CI/CD: carbon windows for non-urgent build/test; artifact promotion decoupled from deploy.
+- Data sources and governance:
+  - Grid APIs (forecast + realtime), internal telemetry, and cloud region signals; cache and smooth noisy signals.
+  - Budgets: kgCO₂e (kilograms CO₂-equivalent) per team/service; dashboards and alerts; exception process for critical incidents.
+- Risks and safeguards:
+  - Don’t violate data residency/compliance; validate capacity and failover paths.
+  - Avoid “rebound” effects (extra retries); measure net CO₂e delta versus baseline.
+
 </details>
 
 <details>
@@ -1013,6 +1073,26 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 - **Technologies**: Direct-to-chip liquid cooling, single-phase immersion, two-phase immersion
 - **Benefits**: Higher efficiency, enables >100kW per rack densities
 - **Adoption**: From niche HPC to mainstream in hyperscale facilities
+
+- Terminology:
+  - TDP (Thermal Design Power): sustained heat the cooling solution must remove.
+  - AI (Artificial Intelligence), HPC (High-Performance Computing).
+- Direct liquid cooling (DLC) details
+  - D2C (Direct-to-Chip) cold plates, CDUs (Coolant Distribution Units), dripless quick-disconnects; redundant pumps (N+1), dual manifolds.
+  - Supply/return loops (secondary fluid) with 30–45°C supply enable chiller-less or elevated setpoints; plate heat exchangers to primary loop.
+- Immersion cooling:
+  - Single-phase: dielectric oils; heat removed via circulation through heat exchangers.
+  - Two-phase: fluorinated fluids boil on hotspots; vapor condenses on a coil: very high heat flux handling; manage fluid loss and GWP (Global Warming Potential).
+- Assisted air/liquid hybrids: RDHx (Rear-Door Heat Exchanger) for retrofit; reduces hot-aisle temps and fan power without full DLC/immersion conversion.
+- Facility integration and operations
+  - Leak detection, fluid monitoring (particulates, moisture), material compatibility (seals, plastics), and service workflows (lift/tilt fixtures).
+  - Heat reuse: recover low-grade heat for district heating; improves site ERE (Energy Reuse Effectiveness).
+- Performance and efficiency:
+  - Lower fan power, improved component temps, better turbo headroom; PUE (Power Usage Effectiveness) and WUE (Water Usage Effectiveness) improvements possible.
+  - Key metrics: approach temperature, ΔT (delta-T) across cold plates, pump efficiency curves, rack inlet/outlet ∆P (pressure drop).
+- Trade-offs:
+  - CAPEX (Capital Expenditure) and OPEX (Operational Expenditure) impacts; staff training and safety; fluid sourcing and end-of-life handling.
+  - Rack mechanics (weight, buoyancy in immersion, service clearances) and vendor qualification for DLC-ready SKUs.
 
 </details>
 
