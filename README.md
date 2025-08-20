@@ -53,7 +53,7 @@ Last updated: 2025-07-30
 
 </details>
 
-## History - Cloud - Azure 
+## History Cloud Azure 
 
 > `Why There’s Not Enough Quota/Capacity for Some Cloud Services in Some Regions?`
 
