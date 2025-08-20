@@ -863,21 +863,54 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 <details>
     <summary><b>Serverless, Edge Computing, AI Acceleration (2020s)</b></summary>
 
+> Optimize the `bytes → flops → bytes` loop: minimize copies, keep tensors on‑device, and batch just enough to meet latency SLOs (Service Level Objectives).
+
 - **Serverless computing**: Event-driven functions with automatic scaling (e.g., Azure Functions, AWS Lambda)
 - **Edge computing**: Processing data closer to sources to reduce latency
 - **AI acceleration**: Specialized hardware (GPUs, TPUs, NPUs) for machine learning workloads
 - **Key technologies**: Azure Functions, AWS Lambda, TensorFlow, PyTorch, CUDA
+- Serverless (FaaS—Function as a Service) internals:
+  - Triggers: HTTP, queues, events, timers; scale‑to‑zero + cold starts; concurrency controls per instance.
+  - Isolation: containers, sandboxed runtimes, or micro‑VMs (virtual machines; e.g., Firecracker); per‑request billing, idempotency + retries with DLQs (Dead‑Letter Queues).
+  - Portable model: Knative Serving/Eventing (revisions, activator, autoscaler); CloudEvents for event metadata.
+- Edge computing:
+  - Constraints: intermittent links, limited CPU/GPU (Graphics Processing Unit), data locality/privacy; patterns: streaming, windowed analytics, feature extraction at source.
+  - Tooling: lightweight K8s (Kubernetes) distributions (k3s, AKS Edge), device plugins, OTA (Over‑The‑Air) updates, attestation (TPM—Trusted Platform Module/TEE—Trusted Execution Environment).
+  - Protocols: MQTT (Message Queuing Telemetry Transport), OPC‑UA (Open Platform Communications Unified Architecture), gRPC (gRPC Remote Procedure Calls); 5G MEC (Multi‑access Edge Computing) for low‑latency ingress; local caches and twin models.
+- AI acceleration:
+  - Hardware: GPUs (Graphics Processing Units; CUDA cores, Tensor Cores; FP32/FP16/BF16—floating‑point formats/INT8—8‑bit integer), TPUs (Tensor Processing Units), NPUs (Neural Processing Units); memory bandwidth and interconnect (NVLink, PCIe—Peripheral Component Interconnect Express, InfiniBand/RDMA—Remote Direct Memory Access) dominate throughput.
+  - Scheduling: K8s device plugins, GPU sharing (MPS—Multi‑Process Service), partitioning (MIG—Multi‑Instance GPU), NUMA (Non‑Uniform Memory Access) alignment; topology‑aware placement.
+  - Inference pipelines: model formats (ONNX—Open Neural Network Exchange), runtimes (ONNX Runtime, TensorRT), servers (Triton), quantization/pruning/distillation for latency/cost.
+  - Data plane: zero‑copy, pinned memory, batching, dynamic shapes; autoscale on QPS (Queries Per Second)/latency SLOs (Service Level Objectives).
 
 </details>
 
 <details>
     <summary><b>Energy/Carbon-Aware Operations (2019-2025)</b></summary>
 
+> Treat carbon like a first‑class SLO (Service Level Objective): define budgets, wire metrics, and route workloads by carbon score alongside latency and cost.
+
 - **Carbon-aware scheduling**: Shifting workloads to times/regions with cleaner energy
 - **Technical approach**: Real-time carbon intensity signals, flexible workload policies
 - **Tools**: Grid carbon intensity APIs, Microsoft Sustainability Calculator
 - **Standards**: ISO 14064, GHG Protocol, Carbon Disclosure Project
-
+- Signals and objectives:
+  - Carbon intensity (grid gCO₂/kWh—grams of CO₂ per kilowatt‑hour): average vs marginal; real‑time + forecasts by region; combine with electricity price and datacenter PUE (Power Usage Effectiveness)/WUE (Water Usage Effectiveness).
+  - Workload classes: deferrable (batch/ETL/ML training), movable (geo‑flex), latency‑critical (pin, optimize).
+- Scheduling and controls:
+  - Time shifting: run deferrable jobs in low‑carbon windows (cron + forecasts).
+  - Geo shifting: place in cleaner regions (multi‑region queues, policy‑aware schedulers).
+  - Power/perf: DVFS (Dynamic Voltage and Frequency Scaling) and power caps (e.g., RAPL—Running Average Power Limit), right‑size CPU/mem, consolidate to idle whole hosts, sleep states off‑peak.
+- Kubernetes patterns:
+  - Scheduler plugins/extenders to weigh carbon score; KEDA (Kubernetes‑based Event‑Driven Autoscaling) for event‑driven pause/resume; PriorityClasses to preempt non‑critical work.
+  - Node labels for region/zone/carbon buckets; topology spread to pack/shed; carbon‑aware HPA (Horizontal Pod Autoscaler) inputs via external metrics.
+- Measurement and reporting:
+  - Telemetry: per‑pod energy models, GPU/CPU utilization exporters, storage/network I/O; estimate embodied vs operational emissions.
+  - Governance: budgets/quotas per team; dashboards and alerts on kgCO₂e (kilograms of CO₂ equivalent) per service.
+- Tooling and standards:
+  - Data sources: grid carbon APIs (forecast + realtime); sustainability calculators/dashboards.
+  - Frameworks: GHG (Greenhouse Gas) Protocol scopes 1–3; ISO (International Organization for Standardization) 14064; disclosures (CDP—Carbon Disclosure Project) and internal SLOs (Service Level Objectives; energy/SKU selection).
+    
 </details>
 
 ### Energy & Sustainability Milestones (1992-present)
