@@ -1,0 +1,292 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6" pages="4">
+  <diagram id="p1" name="Computing Timeline">
+    <mxGraphModel dx="1281" dy="756" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1000" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t0" value="Computing and Cloud Evolution - Timeline" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;strokeColor=none;fillColor=none;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="300" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ec1" value="Early Computing Era" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#aac7f5;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="100" y="90" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="1801: Jacquard loom (punched cards)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="100" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="1837: Babbage - Analytical Engine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="100" y="210" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="1843: Ada Lovelace - first algorithm" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="100" y="260" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ff1" value="Formal Foundations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9fc79a;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="350" y="90" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" value="1936: Turing Machine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="350" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="1941: Zuse Z3 (programmable)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="350" y="210" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="1945: ENIAC (electronic)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="350" y="260" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mc1" value="PC &amp; Internet Revolution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d99a4a;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="600" y="90" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="1950s: Mainframes" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="600" y="160" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="1969: ARPANET" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="600" y="210" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="1971: Intel 4004 microprocessor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="600" y="260" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" value="1981: IBM PC / 1983: DNS" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="600" y="310" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" value="1990: World Wide Web" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="600" y="360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rh1" value="Cloud Computing Era" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6b656;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="850" y="90" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" value="1990s-2000s: Virtualization" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="850" y="160" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="2006: AWS (EC2/S3)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="850" y="210" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" value="2008: Google App Engine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="850" y="260" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" value="2010: Microsoft Azure" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="850" y="310" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mc2" value="Cloud-Native &amp; Beyond" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8e6aa6;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="11" y="382" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mc3" value="2013: Docker (containers)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d0c6d8;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="11" y="452" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mc4" value="2014: Kubernetes (orchestration)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d0c6d8;strokeColor=#000000;fontColor=#000000;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="271" y="452" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mc5" value="2020s: Serverless, Edge Computing, AI Acceleration" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d0c6d8;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="11" y="502" width="500" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mc6" value="2019-2025: Energy/Carbon-Aware Operations" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d0c6d8;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="11" y="552" width="500" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="en1" value="Energy &amp; Sustainability Milestones" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3b2b6b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="364" y="633" width="776" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en2" value="1992: ENERGY STAR program (IT efficiency baseline)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="374" y="711" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en3" value="2004: ASHRAE TC 9.9 Thermal Guidelines" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="372" y="804" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en4" value="2004: 80 PLUS (PSU efficiency)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="374" y="756" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en5" value="2007: PUE defined (The Green Grid)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="372" y="853" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en6" value="2011: Open Compute Project (OCP) launched" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="773" y="712" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en7" value="2015: ASHRAE widened allowable temperature ranges" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="772" y="756" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en8" value="2016: NVMe-oF 1.0 (fabric storage)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="771" y="805" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en9" value="2020: Carbon-aware scheduling &amp; major net-zero pledges" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="771" y="852" width="380" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="en10" value="2022–2024: Liquid/Immersion cooling adoption accelerates" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" parent="1" vertex="1">
+          <mxGeometry x="444" y="905" width="580" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p2" name="Azure Architecture">
+    <mxGraphModel background="#ffffff" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title2" value="Azure Service Delivery - Hardware to Software Layers" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        <!-- Simple stack layers -->
+        <mxCell id="l1" value="1. Facilities and Power (Utility, UPS, Generators, Cooling)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b4f6b;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" value="2. Hardware: Servers, Storage (NVMe/SAS), Network" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#264a33;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="170" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" value="3. Virtualization: Hyper-V, SR-IOV, vSwitch, RDMA, GPU/FPGA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6b4f2b;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="240" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" value="4. Control Plane: Azure Resource Manager (ARM), Resource Providers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6b6b2b;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="310" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" value="5. Orchestrators: AKS/Kubernetes, Service Fabric, VM Scale Sets" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6b2b2b;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="380" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" value="6. Data Plane: Storage Services, Databases, Messaging, VNet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3b2b6b;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="450" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l7" value="7. User Experience: Portal, CLI, SDKs, ARM Templates/Bicep/Terraform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b2b2b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="100" y="520" width="1000" height="60" as="geometry" />
+        </mxCell>
+        <!-- Two key paths -->
+        <mxCell id="path1" value="Control Path: User intent → Validation → Placement → Lifecycle" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="600" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="path2" value="Data Path: Storage I/O, Network Traffic, Messaging" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="620" y="600" width="400" height="30" as="geometry" />
+        </mxCell>
+        <!-- Flow arrows -->
+        <mxCell id="arrow1" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#6c8ebf;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="630" as="sourcePoint" />
+            <mxPoint x="300" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow2" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="630" as="sourcePoint" />
+            <mxPoint x="800" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p3" name="Kubernetes Orchestration">
+    <mxGraphModel background="#ffffff" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title3" value="Kubernetes Control Loops and Autoscaling" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        <!-- Simple K8s diagram -->
+        <mxCell id="k1" value="Control Plane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b4f6b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="100" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" value="API Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="200" y="170" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" value="etcd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="350" y="170" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k4" value="Controller Manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k5" value="Scheduler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="350" y="220" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k6" value="Worker Nodes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#264a33;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="700" y="100" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k7" value="Node A: kubelet, CNI, CSI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="700" y="170" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k8" value="Node B: kubelet, CNI, CSI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="700" y="220" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k9" value="Autoscaling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6b4f2b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="340" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k10" value="HPA: Scale pods based on CPU/Memory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="450" y="410" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k11" value="VPA: Adjust resource requests/limits" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="450" y="460" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k12" value="Cluster Autoscaler: Add/remove nodes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="450" y="510" width="300" height="40" as="geometry" />
+        </mxCell>
+        <!-- Arrows -->
+        <mxCell id="ka1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="k1" target="k6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="k4" target="k9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ka3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="k8" target="k9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p4" name="Energy Efficiency">
+    <mxGraphModel background="#ffffff" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title4" value="Server Energy Efficiency Factors" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+        <!-- Components -->
+        <mxCell id="e1" value="CPU Factors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b4f6b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="100" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="Performance per Watt" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="200" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="DVFS (Dynamic Voltage/Frequency Scaling)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="P-states / C-states" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="200" y="270" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="Memory Factors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#264a33;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="100" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="NUMA Locality" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="500" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="DDR5 / LPDDR" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="500" y="220" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="Storage/Network" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6b4f2b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="800" y="100" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="NVMe / Queue Depth" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="800" y="170" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="SR-IOV / RDMA Offloading" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="800" y="220" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="SmartNIC Acceleration" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="800" y="270" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="Cooling and Power" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3b2b6b;strokeColor=#000000;fontColor=#ffffff;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="350" y="380" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="High-Efficiency PSUs (80+ Platinum)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="350" y="450" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="Liquid Cooling / Immersion" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="350" y="500" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" value="Metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6b6b2b;strokeColor=#000000;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="650" y="380" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" value="PUE (Power Usage Effectiveness)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="650" y="450" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" value="Carbon Intensity" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0e0e0;strokeColor=#000000;fontColor=#000000" vertex="1" parent="1">
+          <mxGeometry x="650" y="500" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" value="OUTCOME: Lower TCO + Higher Performance/Watt + Sustainable Operations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#264a33;strokeColor=#000000;fontColor=#ffffff;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="200" y="600" width="800" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
