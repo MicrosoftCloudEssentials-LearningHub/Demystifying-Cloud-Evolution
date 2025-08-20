@@ -272,71 +272,105 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
   - Growing focus on energy efficiency and carbon footprint
 </details>
 
+### Energy & Sustainability Milestones (1992-present)
+
+> Energy efficiency evolved from component-level to system-level to facility-level approaches:
+>   - Early focus on component efficiency (CPUs, power supplies)
+>   - Expanded to system design (airflow, thermal envelopes)
+>   - Evolved to facility design (free cooling, power distribution)
+>   - Now includes operational practices (workload scheduling, carbon awareness)
+>   - Next frontier: application efficiency and `performance per watt per dollar`
+
 <details>
-  <summary><b>Energy & Sustainability Milestones</b></summary>
+  <summary><b>ENERGY STAR Program (1992)</b></summary>
+  
+- **Administrator**: U.S. Environmental Protection Agency
+- **Technical focus**: Energy consumption standards for computers, monitors
+- **Measurement methodology**: Standardized power consumption testing
+- **Impact**: Created baseline efficiency metrics for IT equipment
 
-  ### Key Developments
-  - **ENERGY STAR Program (1992)**
-    - **Administrator**: U.S. Environmental Protection Agency
-    - **Technical focus**: Energy consumption standards for computers, monitors
-    - **Measurement methodology**: Standardized power consumption testing
-    - **Impact**: Created baseline efficiency metrics for IT equipment
+</details>
 
-  - **80 PLUS (2004)**
-    - **Focus**: Power Supply Unit efficiency certification
-    - **Technical standards**: Efficiency targets at different load levels (20%, 50%, 100%)
-    - **Tiers**: Standard, Bronze, Silver, Gold, Platinum, Titanium
-    - **Significance**: Reduced energy waste in power conversion
 
-  - **ASHRAE TC 9.9 Thermal Guidelines (2004)**
-    - **Technical focus**: Environmental specifications for datacenters
-    - **Key innovation**: Standardized temperature and humidity ranges
-    - **Classes**: A1-A4 with different allowable ranges
-    - **Impact**: Enabled higher operating temperatures, reduced cooling needs
+<details>
+    <summary><b>80 PLUS (2004)</b></summary>
 
-  - **PUE Defined by The Green Grid (2007)**
-    - **Formula**: Total Facility Energy ÷ IT Equipment Energy
-    - **Ideal value**: 1.0 (all energy goes to computing)
-    - **Industry evolution**: Average PUE improved from ~2.0 to ~1.2 in hyperscale facilities
-    - **Limitations**: Doesn't measure computational efficiency, only facility overhead
+- **Focus**: Power Supply Unit efficiency certification
+- **Technical standards**: Efficiency targets at different load levels (20%, 50%, 100%)
+- **Tiers**: Standard, Bronze, Silver, Gold, Platinum, Titanium
+- **Significance**: Reduced energy waste in power conversion
 
-  - **Open Compute Project (2011)**
-    - **Founded by**: Facebook (now Meta)
-    - **Technical innovations**: Open hardware designs for servers, storage, racks
-    - **Key contributions**: Simplified chassis, higher efficiency power systems, rack-scale designs
-    - **Impact**: Standardized efficient designs across industry
+</details>
 
-  - **ASHRAE Widened Temperature Ranges (2015)**
-    - **Technical change**: Expanded recommended and allowable temperature ranges
-    - **Impact**: Reduced cooling requirements, enabled more free cooling hours
-    - **Classes**: New A1-A4 classes with wider ranges for different equipment types
-    - **Energy savings**: Up to 4% energy reduction per 1°C increase in setpoint
 
-  - **NVMe-oF 1.0 (2016)**
-    - **Technical innovation**: Extended NVMe over network fabrics (RDMA, FC, TCP)
-    - **Energy efficiency**: Reduced CPU overhead for storage operations
-    - **Performance**: Lower latency and higher IOPS per watt
-    - **Impact**: Enabled disaggregation of storage resources
+<details>
+    <summary><b>ASHRAE TC 9.9 Thermal Guidelines (2004)</b></summary>
 
-  - **Carbon-aware Scheduling & Net-Zero Pledges (2020)**
-    - **Technical approach**: Workload placement based on real-time grid carbon intensity
-    - **Company commitments**: Microsoft, Google, Amazon announced carbon reduction goals
-    - **Implementation**: APIs for carbon intensity, scheduler plugins, policy engines
-    - **Impact**: Shifting flexible workloads to times of abundant renewable energy
+- **Technical focus**: Environmental specifications for datacenters
+- **Key innovation**: Standardized temperature and humidity ranges
+- **Classes**: A1-A4 with different allowable ranges
+- **Impact**: Enabled higher operating temperatures, reduced cooling needs
 
-  - **Liquid/Immersion Cooling Adoption (2022-2024)**
-    - **Drivers**: Higher density racks, AI accelerators with high TDP
-    - **Technologies**: Direct-to-chip liquid cooling, single-phase immersion, two-phase immersion
-    - **Benefits**: Higher efficiency, enables >100kW per rack densities
-    - **Adoption**: From niche HPC to mainstream in hyperscale facilities
+</details>
 
-  ### Technical Context
-  Energy efficiency evolved from component-level to system-level to facility-level approaches:
-  - Early focus on component efficiency (CPUs, power supplies)
-  - Expanded to system design (airflow, thermal envelopes)
-  - Evolved to facility design (free cooling, power distribution)
-  - Now includes operational practices (workload scheduling, carbon awareness)
-  - Next frontier: application efficiency and "performance per watt per dollar"
+<details>
+    <summary><b>PUE Defined by The Green Grid (2007)</b></summary>
+
+- **Formula**: Total Facility Energy ÷ IT Equipment Energy
+- **Ideal value**: 1.0 (all energy goes to computing)
+- **Industry evolution**: Average PUE improved from ~2.0 to ~1.2 in hyperscale facilities
+- **Limitations**: Doesn't measure computational efficiency, only facility overhead
+
+</details>
+
+<details>
+    <summary><b>Open Compute Project (2011)</b></summary>
+
+- **Founded by**: Facebook (now Meta)
+- **Technical innovations**: Open hardware designs for servers, storage, racks
+- **Key contributions**: Simplified chassis, higher efficiency power systems, rack-scale designs
+- **Impact**: Standardized efficient designs across industry
+
+</details>
+
+<details>
+    <summary><b>ASHRAE Widened Temperature Ranges (2015)</b></summary>
+
+- **Technical change**: Expanded recommended and allowable temperature ranges
+- **Impact**: Reduced cooling requirements, enabled more free cooling hours
+- **Classes**: New A1-A4 classes with wider ranges for different equipment types
+- **Energy savings**: Up to 4% energy reduction per 1°C increase in setpoint
+
+</details>
+
+<details>
+    <summary><b>NVMe-oF 1.0 (2016)</b></summary>
+
+- **Technical innovation**: Extended NVMe over network fabrics (RDMA, FC, TCP)
+- **Energy efficiency**: Reduced CPU overhead for storage operations
+- **Performance**: Lower latency and higher IOPS per watt
+- **Impact**: Enabled disaggregation of storage resources
+
+</details>
+
+<details>
+    <summary><b>Carbon-aware Scheduling & Net-Zero Pledges (2020)</b></summary>
+
+- **Technical approach**: Workload placement based on real-time grid carbon intensity
+- **Company commitments**: Microsoft, Google, Amazon announced carbon reduction goals
+- **Implementation**: APIs for carbon intensity, scheduler plugins, policy engines
+- **Impact**: Shifting flexible workloads to times of abundant renewable energy
+
+</details>
+
+<details>
+    <summary><b>Liquid/Immersion Cooling Adoption (2022-present)</b></summary>
+
+- **Drivers**: Higher density racks, AI accelerators with high TDP
+- **Technologies**: Direct-to-chip liquid cooling, single-phase immersion, two-phase immersion
+- **Benefits**: Higher efficiency, enables >100kW per rack densities
+- **Adoption**: From niche HPC to mainstream in hyperscale facilities
+
 </details>
 
 <!-- START BADGE -->
