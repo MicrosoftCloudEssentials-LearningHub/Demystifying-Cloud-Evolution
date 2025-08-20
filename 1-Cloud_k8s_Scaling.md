@@ -51,7 +51,7 @@ Last updated: 2025-08-20
 
 ## Introduction to Cloud Automation and Orchestration
 
-Automation and orchestration represent the backbone of modern cloud operations, enabling organizations to manage complex distributed systems at scale:
+> Automation and orchestration represent the backbone of modern cloud operations, enabling organizations to manage complex distributed systems at scale:
 
 - **Automation**: Programmatic execution of individual tasks without human intervention
 - **Orchestration**: Coordination of multiple automated tasks to achieve higher-level workflows
