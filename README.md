@@ -15,6 +15,9 @@ Last updated: 2025-07-30
 > [!IMPORTANT]
 > This community demo is for learning only and uses public documentation. It blends history, theory, and local-first labs (no cloud sign-in required). For production guidance, cost/security/compliance, and Azure-specific deployment patterns, contact Microsoft directly: [Microsoft Sales and Support](https://support.microsoft.com/contactus?ContactUsExperienceEntryPointAssetId=S.HP.SMC-HOME)
 
+> [!NOTE]
+> The `dates and events referenced here are estimates and are included for illustrative purposes only`. `This is not official guidance`. There are many more important events and details not covered, use this as a starting point, not a definitive source.
+
 <details>
 <summary><b>List of References</b> (Click to expand)</summary>
 
@@ -232,6 +235,14 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
   - First to separate control from computation
   - Pioneered concepts that appeared independently years later in ENIAC and von Neumann architecture
 
+<img width="800" height="539" alt="image" src="https://github.com/user-attachments/assets/15f0ed7b-cd57-445b-b0b7-d1a3d576f309" />
+
+From [Computer History Museum - Zuse Completes Z3 Machine](https://www.computerhistory.org/tdih/may/12/)
+
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/ac820127-1324-464a-8747-4f0e14658cf7" />
+
+From [Computer History Museum - Zuse Completes Z3 Machine](https://www.computerhistory.org/tdih/may/12/)
+
 </details>
 
 
@@ -296,6 +307,10 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
   - Directly influenced EDVAC, which formalized stored-program concept
   - Inspired both commercial and scientific computing development
 
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/2a1d89d5-6cdf-41cc-bf81-c5bf8a217bca" />
+
+From [Computer History Museum - ENIAC Public unveiling of ENIAC](https://www.computerhistory.org/timeline/1946/#169ebbe2ad45559efbc6eb3572043c44)
+
 </details>
 
 ### PC & Internet Revolution (1950s-1990)
@@ -306,6 +321,20 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
 >   - Development of layered network protocols that enabled global connectivity
 >   - Creation of standards that allowed interoperability between systems from different vendors
 
+> Mental model: `CPU sets up the plan; the device moves the bytes; the CPU gets a doorbell when it’s done.`
+
+> DMA (Direct Memory Access) lets devices read/write RAM without the CPU copying each byte. The CPU prepares a small descriptor (buffer address/length), the device’s DMA engine `bus‑masters` the transfer, then raises an interrupt on completion. This frees CPU cycles, reduces cache pollution, and improves throughput. By contrast, programmed I/O makes the CPU loop over device registers to move data, slow and CPU‑bound.
+>
+> How Channel I/O maps: mainframes used dedicated I/O processors (`channels`) that executed “channel programs” to walk buffers, handle retries, and signal the host, conceptually like modern DMA engines plus queue descriptors.
+>
+> - RX: Receive (ingress) - data coming into the host/device
+> - TX: Transmit (egress) - data going out from the host/device
+>   
+> Modern descendants:
+> - NVMe (Non-Volatile Memory Express): submission/completion queues in memory; SSDs DMA payloads directly to host buffers.
+> - NICs (Network Interface Cards): RX/TX rings with scatter, gather DMA; RDMA can place bytes straight into app memory.
+> - SR‑IOV ( Single Root I/O Virtualization): splits a NIC into virtual functions so VMs/containers get fast, isolated DMA queues.
+
 <details>
   <summary><b>Mainframes (1950s)</b></summary>
 
@@ -313,26 +342,229 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
 - **Technical features**: Standardized instruction set architecture across product line
 - **Impact**: Established the concept of a computer "architecture" independent of implementation
 - **Business model**: Centralized computing with terminals; time-sharing systems
+- Architectural hallmarks:
+  - Standardized ISA (nstruction Set Architecture) across models: culminates in IBM System/360 (1964), the first broad `family` with binary compatibility.
+  - 8‑bit byte and 32‑bit word conventions; EBCDIC (Extended Binary Coded Decimal Interchange Code IBM character encoding) for character encoding.
+  - Privilege rings and storage protection keys; separation of problem state vs supervisor state.
+  - Channel I/O: offloads device control to `channels` and control units. Host builds a channel program (descriptors), then DMA proceeds asynchronously with interrupts on completion/error.
+  - Reliability/availability/serviceability (RAS) as design goals: parity/ECC (Error-Correcting Code, memory that detects/corrects bit errors, typically single-bit) memory, hot‑swap field‑replaceable units, error logging.
+- Operating systems and usage:
+  - OS/360 (MFT/MVT) → job control (JCL), batch queues; later TSO for interactive use.
+  - Time‑sharing lineage (CTSS, MULTICS) influences conversational use; virtualization CP‑67/VM‑370 introduces full‑system virtualization (multiple OSes concurrently).
+  - Spooling: decouples slow devices (printers, card readers) via disk queues.
+- Performance features:
+  - Pipelining and lookahead units in high‑end models (e.g., S/360 Model 91).
+  - Floating‑point units and decimal arithmetic for commercial workloads.
+  - Large memory for the era (hundreds of KB to MB), and I/O throughput prioritized over single‑thread latency.
+- Business/operational model:
+  - Centralized compute with 3270 terminals; chargeback based on CPU seconds, I/O counts, storage used.
+  - Leasing/service contracts; upgrade path within the same ISA reduces software rewrite costs.
 
+ <img width="706" height="614" alt="image" src="https://github.com/user-attachments/assets/0fb08dec-ce8c-45f4-b518-0840028c7212" />
+
+    
+From [IBM Mainframes 45 Years of Evolution -  System/360 Model 20](https://archive.computerhistory.org/resources/access/text/2011/09/102743210-05-01-acc.pdf)
+    
 </details>
 
 <details>
   <summary><b>ARPANET (1969)</b></summary>
 
+> Advanced Research Projects Agency Network (`ARPA`; later `DARPA`).
+> Defense Advanced Research Projects Agency (U.S. Department of Defense R&D agency)
+
+> Three enduring ideas born here: packet switching, end‑to‑end principle, and layered protocols—precursors to modern SDN (Software-Defined Networking) overlays and service meshes.
+
 - **Key people**: Vint Cerf, Bob Kahn, Leonard Kleinrock, J.C.R. Licklider
 - **Technical innovations**: Packet switching, distributed network without central control
 - **Protocols**: Network Control Program (NCP), later TCP/IP (1983)
 - **Growth**: From 4 nodes in 1969 to global network infrastructure
+- Physical and node design:
+  - Backbone: 50 kbps leased lines linking Interface Message Processors (IMPs) built on ruggedized minicomputers.
+  - Host–IMP interface: 1822 protocol; hosts connected via a standard hardware/driver contract.
+- Packet switching and reliability:
+  - Store‑and‑forward switching with small fixed‑size packets; per‑link queues, hop‑by‑hop retransmission.
+  - Early distance‑vector style routing; later refinements reduce count‑to‑infinity and instability.
+- Host protocols and “flag day”:
+  - NCP (Network Control Program) handles connections and flow control for early hosts.
+  - Jan 1, 1983: “flag day” migration to TCP/IP (IP for internetworking, TCP for reliable byte streams, UDP for datagrams).
+- Naming and scaling: Manual HOSTS.TXT replaced by hierarchical, delegated naming (DNS, 1983), enabling global scale and caching.
+- Growth path: From 4 initial nodes (UCLA, SRI, UCSB, Utah) to dozens, then interconnection with other networks (NSFNET), leading to today’s multi‑AS Internet with BGP policy routing.
+
+<img width="800" height="607" alt="image" src="https://github.com/user-attachments/assets/a33df2ba-f914-43a5-b8a1-9dbc74a1e6cf" />
+
+From [ARPAnet logical maps (1969-1979)](https://www.computerhistory.org/collections/catalog/102646704/)
+
+<img width="1270" height="785" alt="image" src="https://github.com/user-attachments/assets/32c3d72f-6cbd-4b57-8027-2719a3ce9cc1" />
+
+From [Encyclopedia Britannica - Visual representation of the spread of ARPANET as of September 1974](https://www.britannica.com/topic/ARPANET)
 
 </details>
 
 <details>
   <summary><b>Intel 4004 (1971)</b></summary>
 
+> Constraints (4‑bit ALU, tiny stack) drove tight, loop‑unrolled code and table‑driven arithmetic—early examples of co‑design between software and silicon limits.
+
 - **Federico Faggin, Ted Hoff, Stanley Mazor**: Designers of the first commercial microprocessor
 - **Technical specifications**: 2,300 transistors, 4-bit CPU, 740 kHz clock speed
 - **Process technology**: 10μm silicon gate technology
 - **Impact**: Began the trend of increasing integration that continues with today's processors
+- Micro‑architecture:
+  - 4‑bit ALU; ~2,300 transistors; max clock ~740 kHz on 10 μm silicon‑gate PMOS.
+  - Harvard‑like separation: program ROM (4001) vs data RAM (4002); 4003 shift registers for I/O.
+  - 12‑bit program counter (addressing up to 4 KB of program space).
+  - Register file: sixteen 4‑bit registers addressable as eight 8‑bit pairs.
+  - Call/return: 3‑level hardware return‑address stack.
+- Instruction set and data formats:
+  - ~46 instructions; 8‑bit and 16‑bit op formats; decimal (BCD) oriented operations for calculators.
+  - No native hardware multiply/divide; implemented via routines.
+- System design:
+  - Multiplexed buses and minimal pins reduce package cost.
+  - Typical application: desktop calculators (e.g., Busicom), controllers.
+- Impact: Demonstrates feasibility of general‑purpose CPUs on a single chip, catalyzing the 8008/8080 → x86 line and the broader microprocessor ecosystem.
+
+<img width="1082" height="716" alt="image" src="https://github.com/user-attachments/assets/10193084-40c1-4433-9657-94d2ab2a7021" />
+
+<img width="993" height="768" alt="image" src="https://github.com/user-attachments/assets/c18260e9-07dc-4fcb-84d5-359d32c59258" />
+
+<img width="1313" height="628" alt="image" src="https://github.com/user-attachments/assets/52a9d86c-ae3a-49fd-989d-e5074a3ae520" />
+
+|  |  |
+|--|--|
+| <img src="https://github.com/user-attachments/assets/9a658630-5065-4d8f-8c22-241f4b23245b" width="100%" /> | <img src="https://github.com/user-attachments/assets/581c2122-e60c-4f8b-bb04-14e1b96f548f" width="100%" /> |
+
+
+<details>
+<summary><b>Click here to see how verilog looks like:</b> (Click to expand)</summary>
+
+> Verilog: a` hardware description language (HDL) used to model electronic systems`. Think of it as the `programming language engineers use to design and simulate digital circuits, like microprocessors, memory chips, and custom logic devices.`
+
+```verilog
+
+`ifndef PHY
+`define PHY
+
+`include "./src/phy_tx.v"
+`include "./src/phy_rx.v"
+
+module phy(
+  input wire clk1f,
+  input wire clk2f,
+  input wire clk4f,
+  input wire clk32f,
+  input wire reset,
+  input wire [7:0] in0,
+  input wire [7:0] in1,
+  input wire [7:0] in2,
+  input wire [7:0] in3,
+  input wire [3:0] validin,
+
+  output reg [7:0] out0,
+  output reg [7:0] out1,
+  output reg [7:0] out2,
+  output reg [7:0] out3,
+  output reg [3:0] validout,
+// outputs for recirc module
+  output reg [7:0] out0_recir,
+  output reg [7:0] out1_recir,
+  output reg [7:0] out2_recir,
+  output reg [7:0] out3_recir,
+  output reg [7:0] valid_out_recir
+  );
+
+
+// Connect the rx to tx
+wire rxtx;
+reg txrxR;
+wire wtxrxR;
+// Connect the tx to rx
+reg txrx;
+// Valid out
+wire [3:0] v_out_conec;
+// For outputs
+wire [7:0] o0, o1, o2, o3;
+wire [7:0] rc0, rc1, rc2, rc3;
+wire [7:0] valid_orecir;
+// Transmiiter Layer
+// Layer of the physical transmitter
+phy_tx_b phy_tx_f(/*AUTOINST*/
+    // Outputs
+    .out_b (wtxrxR),
+    // outputs for recirc module
+    .out0_recir (rc0),
+    .out1_recir (rc1),
+    .out2_recir (rc2),
+    .out3_recir (rc3),
+    .valid_out_recir (valid_orecir),
+    // Inputs
+    .clk1f (clk1f),
+    .clk2f (clk2f),
+    .clk4f (clk4f),
+    .clk32f (clk32f),
+    .reset (reset),
+    .in0 (in0),
+    .in1 (in1),
+    .in2 (in2),
+    .in3 (in3),
+    .in_rx_tx (rxtx),
+    .validmux41 (validin)
+    );
+
+// Decode layer
+phy_rx phy_rx_f(/*AUTOINST*/
+    // Outputs
+    .out0 (o0),
+    .out1 (o1),
+    .out2 (o2),
+    .out3 (o3),
+    .out_rx_tx (rxtx),
+    .valid_out_mux14 (v_out_conec),
+    // Inputs
+    .clk1f (clk1f),
+    .clk2f (clk2f),
+    .clk4f (clk4f),
+    .clk32f (clk32f),
+    .reset (reset),
+    .in (txrx)
+);
+    always@(posedge clk32f) begin
+      txrx <= txrxR;
+  end
+
+always@(*) begin
+  txrxR = wtxrxR;
+ validout = v_out_conec;
+ out0 = o0;
+ out1 = o1;
+ out2 = o2;
+ out3 = o3;
+ out0_recir = rc0;
+ out1_recir = rc1;
+ out2_recir = rc2;
+ out3_recir = rc3;
+ valid_out_recir = valid_orecir;
+end
+
+
+endmodule
+
+
+// Local Variables:
+// verilog-library-directories:("."):
+// End:
+`endif
+```
+
+</details>
+
+<img width="1170" height="575" alt="image" src="https://github.com/user-attachments/assets/f83568bf-d62d-4ff3-ae06-58a683987206" />
+
+<img width="771" height="492" alt="image" src="https://github.com/user-attachments/assets/0001dfc0-a3ab-4437-9184-33978836ffbf" />
+
+<img width="1151" height="409" alt="image" src="https://github.com/user-attachments/assets/56379d70-99aa-4b36-afb2-e87123bc4e17" />
+
+From [Implementation of the PCIe-PHY](https://github.com/brown9804/PCIe-Physical-Layer/tree/master)
 
 </details>
 
@@ -359,7 +591,7 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
 > This era transformed computing from owned assets to utility services:
 >   - Decoupled physical hardware from logical resources
 >   - Introduced elastic capacity and consumption-based pricing
->   - Created API-driven infrastructure enabling infrastructure-as-code
+>   - Created API-driven infrastructure enabling infrastructure-as-code (IaC)
 >   - Shifted capital expenses to operational expenses
 >   - Established global regions with distributed reliability
 
@@ -399,8 +631,6 @@ From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.
 - **Evolution**: Expanded to full IaaS/PaaS/SaaS portfolio
 - **Technical innovations**: Resource Manager model, integrated identity with Azure AD
 - **Enterprise focus**: Hybrid capabilities, enterprise compliance certifications
-
-</details>
 
 </details>
 
