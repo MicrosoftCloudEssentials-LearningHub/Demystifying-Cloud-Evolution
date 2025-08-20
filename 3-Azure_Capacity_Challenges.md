@@ -326,7 +326,7 @@ az vm list-skus --location eastus --output table | Select-String D4s_v5
 
 <!-- START BADGE -->
 <div align="center">
-	<img src="https://img.shields.io/badge/Total%20views-1-limegreen" alt="Total views">
-	<p>Refresh Date: 2025-08-20</p>
+  <img src="https://img.shields.io/badge/Total%20views-1332-limegreen" alt="Total views">
+  <p>Refresh Date: 2025-08-20</p>
 </div>
 <!-- END BADGE -->
