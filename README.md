@@ -237,41 +237,54 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
 
 </details>
 
+### Cloud-Native & Beyond (2013-Present)
+
+> The cloud-native era focuses on distributed systems, orchestration, and sustainability:
+>  - Container orchestration for resilient, scalable applications
+>  - Declarative configurations with reconciliation loops
+>  - Microservices architectures with service meshes
+>  - Developer experience improvements through abstraction
+>  - Growing focus on energy efficiency and carbon footprint
+
+
 <details>
-  <summary><b>Cloud-Native & Beyond (2013-Present)</b></summary>
+    <summary><b>Docker (2013)</b></summary>
 
-  ### Key Innovations
-  - **Docker (2013)**
-    - **Solomon Hykes**: Founder who demonstrated Docker at PyCon 2013
-    - **Technical foundations**: Linux namespaces, cgroups, overlayfs
-    - **Key innovations**: Standard image format, portable runtime, layered filesystem
-    - **Impact**: Transformed application packaging, testing, and deployment
+- **Founder**: Solomon Hykes (demonstrated at PyCon 2013)
+- **Technical foundations**: Linux namespaces, cgroups, overlayfs
+- **Key innovations**: Standard image format, portable runtime, layered filesystem
+- **Impact**: Transformed application packaging, testing, and deployment
 
-  - **Kubernetes (2014)**
-    - **Origins**: Based on Google's internal Borg system
-    - **Key contributors**: Craig McLuckie, Joe Beda, Brendan Burns
-    - **Technical architecture**: Declarative API, control loops, extensible with CRDs
-    - **Core concepts**: Pods, Services, Deployments, StatefulSets, ConfigMaps/Secrets
+</details>
 
-  - **Serverless, Edge Computing, AI Acceleration (2020s)**
-    - **Serverless computing**: Event-triggered functions with automatic scaling
-    - **Edge computing**: Processing closer to data sources to reduce latency
-    - **AI acceleration**: Specialized hardware (GPUs, TPUs, NPUs) for machine learning workloads
-    - **Key technologies**: Azure Functions, AWS Lambda, TensorFlow, PyTorch, CUDA
+<details>
+    <summary><b>Kubernetes (2014)</b></summary>
 
-  - **Energy/Carbon-Aware Operations (2019-2025)**
-    - **Carbon-aware scheduling**: Shifting workloads to times/regions with cleaner energy
-    - **Technical approach**: Real-time carbon intensity signals, flexible workload policies
-    - **Tools**: Grid carbon intensity APIs, Microsoft Sustainability Calculator
-    - **Standards**: ISO 14064, GHG Protocol, Carbon Disclosure Project
+- **Origins**: Inspired by Google’s internal Borg system
+- **Key contributors**: Craig McLuckie, Joe Beda, Brendan Burns
+- **Technical architecture**: Declarative API, control loops, extensibility via CRDs
+- **Core concepts**: Pods, Services, Deployments, StatefulSets, ConfigMaps, Secrets
 
-  ### Technical Context
-  The cloud-native era focuses on distributed systems, orchestration, and sustainability:
-  - Container orchestration for resilient, scalable applications
-  - Declarative configurations with reconciliation loops
-  - Microservices architectures with service meshes
-  - Developer experience improvements through abstraction
-  - Growing focus on energy efficiency and carbon footprint
+</details>
+
+<details>
+    <summary><b>Serverless, Edge Computing, AI Acceleration (2020s)</b></summary>
+
+- **Serverless computing**: Event-driven functions with automatic scaling (e.g., Azure Functions, AWS Lambda)
+- **Edge computing**: Processing data closer to sources to reduce latency
+- **AI acceleration**: Specialized hardware (GPUs, TPUs, NPUs) for machine learning workloads
+- **Key technologies**: Azure Functions, AWS Lambda, TensorFlow, PyTorch, CUDA
+
+</details>
+
+<details>
+    <summary><b>Energy/Carbon-Aware Operations (2019-2025)</b></summary>
+
+- **Carbon-aware scheduling**: Shifting workloads to times/regions with cleaner energy
+- **Technical approach**: Real-time carbon intensity signals, flexible workload policies
+- **Tools**: Grid carbon intensity APIs, Microsoft Sustainability Calculator
+- **Standards**: ISO 14064, GHG Protocol, Carbon Disclosure Project
+
 </details>
 
 ### Energy & Sustainability Milestones (1992-present)
