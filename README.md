@@ -121,18 +121,19 @@ From [Science Museum Group - Babbage's Analytical Engine, 1834-1871. (Trial mode
 - **Legacy**:
   - Considered the first computer programmer for publishing the earliest algorithm designed for a machine.
   - The modern programming language `Ada` (developed by the U.S. Department of Defense in the early 1980s) was named in her honor.
-- **About the `Ada` Language**:
-  - **Purpose**: Designed for large-scale, safety-critical, and real-time systems where reliability and maintainability are essential.
-  - **Key Features**: Strong typing, modularity, concurrency (tasking), exception handling, and support for real-time constraints.
-  - **Primary Uses**:
-    - **Aerospace and Defense**: Avionics systems, missile guidance, and military command systems.
-    - **Transportation**: Railway signaling, air traffic control.
-    - **Medical Devices**: Life-critical monitoring systems.
-  - **Derived Technologies**:
-    - Influenced later languages like SPARK (a formally verifiable subset of Ada for high-assurance systems).
-    - Continues to be used in mission-critical software for satellites, aircraft, and nuclear systems.
-      
-    <img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/d03ca56b-8930-4f43-8caf-931237b67efc" />
+
+> - **About the `Ada` Language**:
+>   - **Purpose**: Designed for large-scale, safety-critical, and real-time systems where reliability and maintainability are essential.
+>   - **Key Features**: Strong typing, modularity, concurrency (tasking), exception handling, and support for real-time constraints.
+>   - **Primary Uses**:
+>     - **Aerospace and Defense**: Avionics systems, missile guidance, and military command systems.
+>     - **Transportation**: Railway signaling, air traffic control.
+>     - **Medical Devices**: Life-critical monitoring systems.
+> - **Derived Technologies**:
+>   - Influenced later languages like SPARK (a formally verifiable subset of Ada for high-assurance systems).
+>   - Continues to be used in mission-critical software for satellites, aircraft, and nuclear systems.
+    
+<img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/d03ca56b-8930-4f43-8caf-931237b67efc" />
 
 From [Computer History Museum - Ada Lovelace](https://www.computerhistory.org/babbage/adalovelace)
 
