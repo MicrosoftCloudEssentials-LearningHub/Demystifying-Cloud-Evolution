@@ -43,6 +43,8 @@ Last updated: 2025-07-30
 
 <img width="1143" height="921" alt="cloud-evolution-timeline-Computing Timeline drawio" src="https://github.com/user-attachments/assets/4096eb52-7a0e-4a98-8b01-0b8e7884cdd8" />
 
+[Diagram](./docs/cloud-evolution-timeline.drawio)
+
 ### Early Computing Era (1801-1843)
 
 > The early computing era established fundamental concepts still used today:
