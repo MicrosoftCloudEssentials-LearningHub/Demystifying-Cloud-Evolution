@@ -623,7 +623,7 @@ Start → Try Primary SKU in Primary Region (any AZ)
 
 <!-- START BADGE -->
 <div align="center">
-	<img src="https://img.shields.io/badge/Total%20views-1-limegreen" alt="Total views">
-	<p>Refresh Date: 2025-08-20</p>
+  <img src="https://img.shields.io/badge/Total%20views-1332-limegreen" alt="Total views">
+  <p>Refresh Date: 2025-08-20</p>
 </div>
 <!-- END BADGE -->
