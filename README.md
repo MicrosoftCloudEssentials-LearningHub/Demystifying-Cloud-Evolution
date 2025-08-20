@@ -1123,7 +1123,7 @@ From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
 
 > In Azure, service/capacity limitations in certain regions are common, especially for high-demand resources (like GPUs, large VM sizes, or new services).
 
-> By monitoring quotas, planning for multi-region deployment, optimizing usage, and collaborating with Microsoft, you can minimize disruption from regional Azure capacity constraints, while meeting energy and sustainability goals.
+> By monitoring quotas, planning for multi-region deployment, optimizing usage, you can minimize disruption from regional Azure capacity constraints, while meeting energy and sustainability goals.
 
 ### Monitor and Request Quota Increases
 
