@@ -26,6 +26,7 @@ Last updated: 2025-07-30
 - [Intel 4004 history](https://www.intel.com/content/www/us/en/history/museum-story-of-intel-4004.html)
 - [National Museums Scotland - The Jacquard loom: innovation in textiles and computing](https://www.nms.ac.uk/discover-catalogue/the-jacquard-loom-innovation-in-textiles-and-computing)
 - [Science Museum Group - Babbage's Analytical Engine, 1834-1871. (Trial model)](https://collection.sciencemuseumgroup.org.uk/objects/co62245/babbages-analytical-engine-1834-1871-trial-model)
+- [Ada and the First Computer](https://www.cs.virginia.edu/~robins/Ada_and_the_First_Computer.pdf)
 
 </details>
 
