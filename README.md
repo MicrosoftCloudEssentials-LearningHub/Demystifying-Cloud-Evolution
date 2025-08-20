@@ -571,18 +571,66 @@ From [Implementation of the PCIe-PHY](https://github.com/brown9804/PCIe-Physical
 <details>
   <summary><b>IBM PC (1981) / DNS (1983)</b></summary>
 
+> The PC’s open bus/BIOS (Basic Input/Output System) and DNS’s hierarchical delegation are both `open interfaces` that unlocked third‑party ecosystems—key to later cloud modularity.
+
+
 - **IBM PC**: Open architecture led to clone market and standardization
 - **DNS**: Paul Mockapetris designed system to map names to IP addresses
 - **Technical significance**: DNS enabled scaling the Internet beyond manual address tables
+- IBM PC technicals:
+  - CPU: Intel 8088 (16‑bit internal, 8‑bit external bus) @ 4.77 MHz; 8259 PIC, 8237 DMA, 8253 PIT peripherals.
+  - Bus/expansion: 8‑bit ISA slots; later AT adds 16‑bit ISA.
+  - Memory map: “conventional” 640 KB limit with upper area reserved for ROM/IO (the classic 640K barrier).
+  - Firmware: BIOS provides device services; bootstraps DOS (PC‑DOS/MS‑DOS).
+  - Openness: Published schematics and BIOS interfaces enabled clone market; clean‑room BIOS implementations (e.g., Compaq) standardized compatibility.
+- DNS technicals:
+  - Hierarchical distributed database: root → TLDs → domains; delegation via NS records.
+  - Resource records: A/AAAA, NS, SOA, MX, CNAME, PTR, TXT etc.
+  - Operation: UDP/53 for queries (TCP for zone transfers/large responses); caching with TTL to dampen load.
+  - Scales beyond HOSTS.TXT by decentralizing authority and leveraging caching resolvers.
+
+
+<img width="1440" height="1440" alt="image" src="https://github.com/user-attachments/assets/a1c89e66-79be-46ac-a4d3-d3622716a8ae" />
+
+From [IBM - The different iterations of the IBM PC over the years](https://www.ibm.com/history/personal-computer)
+
+<img width="600" alt="image" src="https://github.com/brown9804/CloudDevOps_LPath/assets/24630902/23e6d283-02d4-4743-9211-f7692eaf0fd9">
+
+From [What is DNS (Domain Name System)](https://learn.microsoft.com/en-us/azure/dns/dns-overview)
 
 </details>
 
 <details>
   <summary><b>World Wide Web (1990)</b></summary>
 
+> The web’s statelessness and cacheability directly influence cloud API design (idempotent operations, declarative templates, eventual consistency patterns).
+
 - **Tim Berners-Lee**: Created HTTP, HTML, and the first browser while at CERN
+
+> Conseil Européen pour la Recherche Nucléaire (historic name); now Organisation européenne pour la recherche nucléaire → `European Organization for Nuclear Research.`
+
 - **Technical components**: URLs, HTTP protocol, HTML markup language
 - **Architecture**: Client-server model with stateless requests
+- Protocol and format stack:
+  - URLs/URIs specify resource identity; HTTP provides request/response; HTML provides hypertext rendering.
+  - HTTP/0.9 → 1.0/1.1 add headers, caching controls, persistent connections, and proxies; later TLS adds transport security.
+- Architecture:
+  - Stateless, client–server model; scalability via horizontal replication behind load balancers and caching (CDNs, proxy caches).
+  - Dynamic content arrives with CGI, then application servers; cookies (mid‑1990s) introduce session state atop stateless HTTP.
+- Developer model:
+  - From static pages to 3‑tier apps (web server, app server, database).
+  - REST patterns later popularize resource‑oriented APIs over HTTP verbs and status codes.
+
+
+<img width="800" height="534" alt="image" src="https://github.com/user-attachments/assets/c7189956-8efb-444c-95e3-18d1de151778" />
+
+From [University of Washington - The Cybersecurity Implications of Chinese Undersea Cable Investment](https://jsis.washington.edu/news/cybersecurity-implications-chinese-undersea-cable-investment/)
+
+<img width="900" height="506" alt="image" src="https://github.com/user-attachments/assets/ffbf1171-dc41-46a1-b1c9-aa2631c85f45" />
+
+<img width="420" height="236" alt="image" src="https://github.com/user-attachments/assets/2e3b79de-f154-4be4-b0b9-6e137d657854" />
+
+From [The incredible story of the underwater internet](https://www.techradar.com/news/internet/the-incredible-story-of-the-underwater-internet-1291295)
 
 </details>
 
@@ -598,10 +646,20 @@ From [Implementation of the PCIe-PHY](https://github.com/brown9804/PCIe-Physical
 <details>
   <summary><b>Virtualization (1990s-2000s)</b></summary>
 
+> SR‑IOV and modern vSwitch offloads cut CPU cycles per packet—crucial for data‑plane efficiency in dense fleets.
+
 - **VMware (founded 1998)**: Commercialized x86 virtualization
 - **Technical innovations**: Virtual Machine Monitors (VMMs), hardware-assisted virtualization (Intel VT-x, AMD-V)
 - **Benefits**: Server consolidation, workload isolation, snapshot/migration capabilities
 - **Enabling technologies**: Trap-and-emulate, binary translation, paravirtualization
+- Hypervisor techniques:
+  - Binary translation and para‑virtualization (pre‑VT‑x/AMD‑V) to handle sensitive instructions; later hardware assist enables type‑1 hypervisors at scale.
+  - Memory virtualization: shadow page tables → EPT/NPT; ballooning for overcommit; copy‑on‑write snapshots.
+  - I/O virtualization: emulated devices → para‑virtual drivers (virtio) → SR‑IOV for near‑native NIC performance.
+- Operational primitives:
+  - Live migration (pre‑copy/post‑copy), snapshots, templates (“golden images”), high availability restarts.
+  - Resource scheduling across clusters with anti‑affinity and admission control.
+- Outcomes: Higher utilization, better isolation, faster provisioning—the substrate for cloud multi‑tenancy.
 
 </details>
 
