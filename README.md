@@ -113,7 +113,7 @@ From [Science Museum Group - Babbage's Analytical Engine, 1834-1871. (Trial mode
   - Her algorithm leveraged the Engine’s ability to perform **loops** and **conditional branching**, concepts fundamental to modern programming.
 - **Conceptual Breakthrough**:
   - Proposed that the Analytical Engine could manipulate **symbols** as well as numbers, anticipating the idea of **general-purpose computation**.
-  - Suggested that such a machine could compose music or create art if the rules were formalized — a profound insight into symbolic processing and abstraction.
+  - Suggested that such a machine could compose music or create art if the rules were formalized, a profound insight into symbolic processing and abstraction.
 - **Technical Insights in Notes**:
   - Discussed the Engine’s architecture in detail: the `store` (memory), `mill` (processor), and the use of **punched cards** for instructions and data.
   - Explained how **sequential control**, **iteration**, and **data storage** would work mechanically.
