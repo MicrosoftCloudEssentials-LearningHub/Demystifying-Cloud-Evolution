@@ -51,6 +51,13 @@ Last updated: 2025-08-20
 - [Proactive planning and design](#proactive-planning-and-design)
 - [Operational playbooks (runbooks)](#operational-playbooks-runbooks)
 - [Automation examples (CLI/PowerShell/Bicep/KQL)](#automation-examples-clipowershellbicepkql)
+- [Error-to-Action mapping](#error-to-action-mapping)
+- [Alerting and auto-remediation](#alerting-and-auto-remediation)
+- [CI/CD gates and policy guardrails](#cicd-gates-and-policy-guardrails)
+- [Quota-as-Code automation](#quota-as-code-automation)
+- [Policy config schema (region/SKU/quotas)](#policy-config-schema-regionskuquotas)
+- [IaC quickstart: Action Group + Alerts + Logic App](#iac-quickstart-action-group--alerts--logic-app)
+- [SKU/Region fallback playbook](#skuregion-fallback-playbook)
 - [AKS- and PaaS-specific guidance](#aks--and-paas-specific-guidance)
 - [Testing, drill, and validation](#testing-drill-and-validation)
 - [Cost, reservations, and risk trade-offs](#cost-reservations-and-risk-trade-offs)
@@ -281,6 +288,296 @@ AzureActivity
 az vm list-skus --location eastus --output table | Select-String D4s_v5
 ```
 
+## Error-to-Action mapping
+
+- AllocationFailure
+	- Immediate: Retry with next allowed SKU (same region, any AZ) via VMSS Flex or parameterized IaC
+	- Next: Try alternative AZ; if still failing, try paired/secondary region
+	- Follow-up: Open capacity ticket only if pattern persists across AZs/regions; enrich with Activity Log evidence
+
+- SKUNotAvailable
+	- Immediate: Switch to nearest-performance SKU or adjacent family (e.g., Dv5 ↔ Ev5) from an approved allowlist
+	- Next: Check region availability list; move only burst capacity when possible
+	- Follow-up: Update allowlist; revisit reservations/savings plans to align with observed availability
+
+- QuotaExceeded
+	- Immediate: Re-balance to other families/regions or temporarily cap scale-out
+	- Next: Auto-raise per-VM-family vCPU quota with approval workflow; block rollout until raised
+	- Follow-up: Increase proactive thresholds; embed What-If gates in CI
+
+- OverconstrainedAllocationRequest / ZonalAllocationFailed
+	- Immediate: Relax constraints (allow any-of zones; remove non-critical PPG)
+	- Next: Add alternate SKU or region; retry with wider placement
+	- Follow-up: Document minimal viable constraints in design
+
+## Alerting and auto-remediation
+
+- Alerts to create
+	- Activity log alert: AllocationFailure / SKUNotAvailable / QuotaExceeded events
+	- Metric alerts: VMSS pending instances, AKS Pending pods > N for M minutes
+	- Service Health: Regional capacity advisories for target regions
+
+- KQL alert (activity failures)
+```kql
+AzureActivity
+| where TimeGenerated > ago(15m)
+| where ActivityStatusValue == 'Failed'
+| where Properties has_any ('AllocationFailure','SKUNotAvailable','QuotaExceeded','Overconstrained')
+| summarize failures = count() by bin(TimeGenerated, 5m)
+| where failures > 0
+```
+
+- Auto-remediation patterns
+	- Logic App/Function: on alert, re-deploy with next SKU/AZ, or create quota request; attach incident context
+	- Pipeline gate: block infra rollout if capacity alerts fired in last 30 minutes
+	- Ticketing integration: create/route incident with runbook decision tree
+
+## CI/CD gates and policy guardrails
+
+- Pipeline gates
+	- Deployment What-If on all infra PRs; fail when QuotaExceeded is predicted
+	- SKU availability probe per target region before rollout
+	- Require populated fallback parameters (alt SKUs, secondary region)
+
+- Policy guardrails (examples)
+	- Deny disallowed SKUs; Audit PPG usage unless tag reason is present
+	- Require minRegions >= 2 for tier-X services
+	- Enforce tags: region-priority, sku-allowlist-version
+
+## Quota-as-Code automation
+
+- Desired state approach
+	- Track per-VM-family vCPU quotas by region in config (YAML/JSON)
+	- Pipeline reconciles desired vs actual and raises requests ahead of scale events
+
+- Example outline (PowerShell pseudocode)
+```powershell
+$desired = @(
+	@{ region='eastus';  family='Dsv5'; vcpus=200 },
+	@{ region='eastus2'; family='Dsv5'; vcpus=200 }
+)
+foreach ($q in $desired) {
+	# Get current quota for $q.family in $q.region
+	# If current < $q.vcpus → submit quota increase request and notify approvers
+}
+```
+
+## Policy config schema (region/SKU/quotas)
+
+- Minimal, repo-friendly schema to drive fallback, placement, and quota reconciliation.
+
+```yaml
+# policy.yaml
+version: 1
+policy:
+	regionPriority:
+		- eastus
+		- eastus2
+		- centralus
+	skuAllowlist:
+		- Standard_D4s_v5
+		- Standard_D2s_v5
+		- Standard_E4s_v5
+	constraints:
+		zones: any
+		requireAcceleratedNetworking: true
+	quotas:
+		compute:
+			Dsv5:
+				eastus: 200
+				eastus2: 200
+		publicIps:
+			eastus: 100
+alerts:
+	allocationFailure:
+		window: PT15M
+		threshold: 1
+```
+
+```json
+{
+	"version": 1,
+	"policy": {
+		"regionPriority": ["eastus", "eastus2", "centralus"],
+		"skuAllowlist": ["Standard_D4s_v5", "Standard_D2s_v5", "Standard_E4s_v5"],
+		"constraints": {
+			"zones": "any",
+			"requireAcceleratedNetworking": true
+		},
+		"quotas": {
+			"compute": { "Dsv5": { "eastus": 200, "eastus2": 200 } },
+			"publicIps": { "eastus": 100 }
+		}
+	},
+	"alerts": { "allocationFailure": { "window": "PT15M", "threshold": 1 } }
+}
+```
+
+Guidance
+- Source-control the schema; bump version when policy changes. Validate in CI before deploys.
+- Feed this into your quota reconciler and your fallback selector to keep behaviors consistent.
+
+## IaC quickstart: Action Group + Alerts + Logic App
+
+- Deploys: Action Group (common schema enabled), Activity Log Alert for capacity errors, KQL Log Alert, and a Logic App (Consumption) that receives the alert via webhook to trigger an automated fallback/runbook.
+- API versions aligned with current schemas: actionGroups@2023-01-01, activityLogAlerts@2020-10-01, scheduledQueryRules@2023-12-01, logic/workflows@2019-05-01.
+
+```bicep
+// params
+param location string = resourceGroup().location
+param actionGroupName string = 'cap-alerts-ag'
+param actionGroupShort string = 'capag'
+param lawResourceId string // Log Analytics workspace resourceId for KQL alert scopes
+
+// Logic App (Consumption) with an HTTP trigger named 'manual'
+resource wf 'Microsoft.Logic/workflows@2019-05-01' = {
+	name: 'cap-fallback-la'
+	location: location
+	properties: {
+		state: 'Enabled'
+		definition: {
+			'$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
+			'contentVersion': '1.0.0.0'
+			'parameters': {}
+			'triggers': {
+				'manual': {
+					'type': 'Request',
+					'kind': 'Http',
+					'inputs': {
+						'schema': {}
+					}
+				}
+			}
+			'actions': {
+				'DecideAndInvoke': {
+					'type': 'Http',
+					'inputs': {
+						'method': 'POST',
+						// TODO: replace with your pipeline/runbook endpoint
+						'uri': 'https://example.com/fallback-run',
+						'headers': {
+							'Content-Type': 'application/json'
+						},
+						'body': {
+							'alert': "@{triggerBody()}"
+						}
+					}
+				}
+			},
+			'outputs': {}
+		}
+	}
+}
+
+// Build Logic App trigger callback URL for Action Group receiver
+var wfTriggerCallback = listCallbackUrl(resourceId('Microsoft.Logic/workflows/triggers', wf.name, 'manual'), '2019-05-01').value
+
+// Action Group with Logic App receiver (Common Alert Schema recommended)
+resource ag 'Microsoft.Insights/actionGroups@2023-01-01' = {
+	name: actionGroupName
+	location: 'global'
+	properties: {
+		enabled: true
+		groupShortName: actionGroupShort
+		logicAppReceivers: [
+			{
+				name: 'cap-fallback-la'
+				resourceId: wf.id
+				callbackUrl: wfTriggerCallback
+				useCommonAlertSchema: true
+			}
+		]
+	}
+}
+
+// Activity Log Alert for capacity-related failures
+resource ala 'Microsoft.Insights/activityLogAlerts@2020-10-01' = {
+	name: 'cap-activity-alert'
+	location: 'global'
+	properties: {
+		enabled: true
+		scopes: [ subscription().id ]
+		condition: {
+			allOf: [
+				{ field: 'status', equals: 'Failed' }
+				{ field: 'category', equals: 'Administrative' }
+				// Match common capacity errors embedded in properties
+				{ field: 'properties', containsAny: [ 'AllocationFailure', 'SKUNotAvailable', 'QuotaExceeded', 'Overconstrained' ] }
+			]
+		}
+		actions: {
+			actionGroups: [ { actionGroupId: ag.id } ]
+		}
+		description: 'Route capacity allocation/quota failures to Logic App for auto-remediation.'
+	}
+}
+
+// Scheduled Query (KQL) Alert over Activity Logs (or over AzureActivity in LAW)
+resource kql 'Microsoft.Insights/scheduledQueryRules@2023-12-01' = {
+	name: 'cap-kql-alert'
+	location: location
+	properties: {
+		enabled: true
+		displayName: 'Capacity allocation failures (KQL)'
+		description: 'Detect allocation/quota failures via KQL and invoke action group.'
+		severity: 2
+		evaluationFrequency: 'PT5M'
+		windowSize: 'PT15M'
+		criteria: {
+			allOf: [
+				{
+					query: '''
+AzureActivity
+| where TimeGenerated > ago(15m)
+| where ActivityStatusValue == "Failed"
+| where Properties has_any ("AllocationFailure","SKUNotAvailable","QuotaExceeded","Overconstrained")
+| summarize failures = count()
+'''
+					timeAggregation: 'Count'
+					operator: 'GreaterThan'
+					threshold: 0
+				}
+			]
+		}
+		scopes: [ lawResourceId ]
+		actions: {
+			actionGroups: [ ag.id ]
+			customProperties: {
+				scenario: 'capacity-fallback'
+			}
+		}
+		autoMitigate: true
+	}
+}
+```
+
+Notes
+- If you prefer, use Azure Verified Modules instead of raw resources: action group (avm/res/insights/action-group), activity log alert (avm/res/insights/activity-log-alert), scheduled query rule (avm/res/insights/scheduled-query-rule), logic app (avm/res/logic/workflow).
+- For private Logic App ingress, swap to a function receiver in the Action Group and authorize with an AAD app or MSI.
+
+## SKU/Region fallback playbook
+
+- Decision tree
+```
+Start → Try Primary SKU in Primary Region (any AZ)
+	├─ Success → Done
+	└─ Fail (AllocationFailure/SKUNotAvailable)
+			→ Try Alt SKU in Primary Region (any AZ)
+					├─ Success → Done
+					└─ Fail → Try Primary SKU in Secondary Region (any AZ)
+								├─ Success → Done
+								└─ Fail → Queue/Defer, or escalate (quota/capacity ticket)
+```
+
+- Inputs
+	- sku_allowlist: [D4s_v5, D2s_v5, E4s_v5]
+	- region_priority: [eastus, eastus2, centralus]
+	- constraints: requireAcceleratedNetworking=true, zones=any
+
+- Outputs
+	- Selected deployment tuple: (region, zone, sku)
+	- Incident created if no viable path found
+
 ## AKS- and PaaS-specific guidance
 
 - AKS
@@ -326,7 +623,7 @@ az vm list-skus --location eastus --output table | Select-String D4s_v5
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1332-limegreen" alt="Total views">
-  <p>Refresh Date: 2025-08-20</p>
+	<img src="https://img.shields.io/badge/Total%20views-1-limegreen" alt="Total views">
+	<p>Refresh Date: 2025-08-20</p>
 </div>
 <!-- END BADGE -->
