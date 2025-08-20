@@ -90,7 +90,7 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
 </details>
 
 
-## Formal Foundations (1936-1945)
+### Formal Foundations (1936-1945)
 
 > This era formalized computing theory and produced the first working electronic computers:
 >   - Proved the theoretical basis and limits of computation
@@ -129,81 +129,110 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
 </details>
 
 
+### PC & Internet Revolution (1950s-1990)
+
+> This era democratized computing and built the Internet infrastructure:
+>   - Transition from batch processing to interactive computing
+>   - Evolution from centralized to distributed systems
+>   - Development of layered network protocols that enabled global connectivity
+>   - Creation of standards that allowed interoperability between systems from different vendors
+
 <details>
-  <summary><b>PC & Internet Revolution (1950s-1990)</b></summary>
+  <summary><b>Mainframes (1950s)</b></summary>
 
-  ### Key Innovations
-  - **Mainframes (1950s)**
-    - **IBM System/360 (1964)**: First family of compatible computers with different performance levels
-    - **Technical features**: Standardized instruction set architecture across product line
-    - **Impact**: Established the concept of a computer "architecture" independent of implementation
-    - **Business model**: Centralized computing with terminals; time-sharing systems
+- **IBM System/360 (1964)**: First family of compatible computers with different performance levels
+- **Technical features**: Standardized instruction set architecture across product line
+- **Impact**: Established the concept of a computer "architecture" independent of implementation
+- **Business model**: Centralized computing with terminals; time-sharing systems
 
-  - **ARPANET (1969)**
-    - **Key people**: Vint Cerf, Bob Kahn, Leonard Kleinrock, J.C.R. Licklider
-    - **Technical innovations**: Packet switching, distributed network without central control
-    - **Protocols**: Network Control Program (NCP), later TCP/IP (1983)
-    - **Growth**: From 4 nodes in 1969 to global network infrastructure
-
-  - **Intel 4004 (1971)**
-    - **Federico Faggin, Ted Hoff, Stanley Mazor**: Designers of the first commercial microprocessor
-    - **Technical specifications**: 2,300 transistors, 4-bit CPU, 740 kHz clock speed
-    - **Process technology**: 10μm silicon gate technology
-    - **Impact**: Began the trend of increasing integration that continues with today's processors
-
-  - **IBM PC (1981) / DNS (1983)**
-    - **IBM PC**: Open architecture led to clone market and standardization
-    - **DNS**: Paul Mockapetris designed system to map names to IP addresses
-    - **Technical significance**: DNS enabled scaling the Internet beyond manual address tables
-
-  - **World Wide Web (1990)**
-    - **Tim Berners-Lee**: Created HTTP, HTML, and the first browser while at CERN
-    - **Technical components**: URLs, HTTP protocol, HTML markup language
-    - **Architecture**: Client-server model with stateless requests
-
-  ### Technical Context
-  This era democratized computing and built the Internet infrastructure:
-  - Transition from batch processing to interactive computing
-  - Evolution from centralized to distributed systems
-  - Development of layered network protocols that enabled global connectivity
-  - Creation of standards that allowed interoperability between systems from different vendors
 </details>
 
 <details>
-  <summary><b>Cloud Computing Era (1990s-2010)</b></summary>
+  <summary><b>ARPANET (1969)</b></summary>
 
-  ### Key Innovations
-  - **Virtualization (1990s-2000s)**
-    - **VMware (founded 1998)**: Commercialized x86 virtualization
-    - **Technical innovations**: Virtual Machine Monitors (VMMs), hardware-assisted virtualization (Intel VT-x, AMD-V)
-    - **Benefits**: Server consolidation, workload isolation, snapshot/migration capabilities
-    - **Enabling technologies**: Trap-and-emulate, binary translation, paravirtualization
+- **Key people**: Vint Cerf, Bob Kahn, Leonard Kleinrock, J.C.R. Licklider
+- **Technical innovations**: Packet switching, distributed network without central control
+- **Protocols**: Network Control Program (NCP), later TCP/IP (1983)
+- **Growth**: From 4 nodes in 1969 to global network infrastructure
 
-  - **AWS EC2/S3 (2006)**
-    - **Key people**: Andy Jassy (AWS CEO), Werner Vogels (CTO)
-    - **Technical innovations**: API-driven infrastructure, pay-per-use model
-    - **Architecture**: Multi-tenant infrastructure, virtualization at scale
-    - **Impact**: Fundamentally changed IT procurement and operations models
+</details>
 
-  - **Google App Engine (2008)**
-    - **Technical approach**: Platform-as-a-Service (PaaS) model
-    - **Developer experience**: Focus on application code, not infrastructure
-    - **Constraints**: Language/framework restrictions, quotas, managed scaling
-    - **Impact**: Introduced developers to serverless concepts and auto-scaling
+<details>
+  <summary><b>Intel 4004 (1971)</b></summary>
 
-  - **Microsoft Azure (2010)**
-    - **Initial focus**: Platform-as-a-Service with .NET integration
-    - **Evolution**: Expanded to full IaaS/PaaS/SaaS portfolio
-    - **Technical innovations**: Resource Manager model, integrated identity with Azure AD
-    - **Enterprise focus**: Hybrid capabilities, enterprise compliance certifications
+- **Federico Faggin, Ted Hoff, Stanley Mazor**: Designers of the first commercial microprocessor
+- **Technical specifications**: 2,300 transistors, 4-bit CPU, 740 kHz clock speed
+- **Process technology**: 10μm silicon gate technology
+- **Impact**: Began the trend of increasing integration that continues with today's processors
 
-  ### Technical Context
-  This era transformed computing from owned assets to utility services:
-  - Decoupled physical hardware from logical resources
-  - Introduced elastic capacity and consumption-based pricing
-  - Created API-driven infrastructure enabling infrastructure-as-code
-  - Shifted capital expenses to operational expenses
-  - Established global regions with distributed reliability
+</details>
+
+<details>
+  <summary><b>IBM PC (1981) / DNS (1983)</b></summary>
+
+- **IBM PC**: Open architecture led to clone market and standardization
+- **DNS**: Paul Mockapetris designed system to map names to IP addresses
+- **Technical significance**: DNS enabled scaling the Internet beyond manual address tables
+
+</details>
+
+<details>
+  <summary><b>World Wide Web (1990)</b></summary>
+
+- **Tim Berners-Lee**: Created HTTP, HTML, and the first browser while at CERN
+- **Technical components**: URLs, HTTP protocol, HTML markup language
+- **Architecture**: Client-server model with stateless requests
+
+</details>
+
+### Cloud Computing Era (1990s-2010)
+
+> This era transformed computing from owned assets to utility services:
+>   - Decoupled physical hardware from logical resources
+>   - Introduced elastic capacity and consumption-based pricing
+>   - Created API-driven infrastructure enabling infrastructure-as-code
+>   - Shifted capital expenses to operational expenses
+>   - Established global regions with distributed reliability
+
+<details>
+  <summary><b>Virtualization (1990s-2000s)</b></summary>
+
+- **VMware (founded 1998)**: Commercialized x86 virtualization
+- **Technical innovations**: Virtual Machine Monitors (VMMs), hardware-assisted virtualization (Intel VT-x, AMD-V)
+- **Benefits**: Server consolidation, workload isolation, snapshot/migration capabilities
+- **Enabling technologies**: Trap-and-emulate, binary translation, paravirtualization
+
+</details>
+
+<details>
+  <summary><b>AWS EC2/S3 (2006)</b></summary>
+
+- **Key people**: Andy Jassy (AWS CEO), Werner Vogels (CTO)
+- **Technical innovations**: API-driven infrastructure, pay-per-use model
+- **Architecture**: Multi-tenant infrastructure, virtualization at scale
+- **Impact**: Fundamentally changed IT procurement and operations models
+
+</details>
+<details>
+    <summary><b>Google App Engine (2008)</b></summary>
+
+- **Technical approach**: Platform-as-a-Service (PaaS) model
+- **Developer experience**: Focus on application code, not infrastructure
+- **Constraints**: Language/framework restrictions, quotas, managed scaling
+- **Impact**: Introduced developers to serverless concepts and auto-scaling
+
+</details>
+
+<details>
+    <summary><b>Microsoft Azure (2010)</b></summary>
+
+- **Initial focus**: Platform-as-a-Service with .NET integration
+- **Evolution**: Expanded to full IaaS/PaaS/SaaS portfolio
+- **Technical innovations**: Resource Manager model, integrated identity with Azure AD
+- **Enterprise focus**: Hybrid capabilities, enterprise compliance certifications
+
+</details>
+
 </details>
 
 <details>
