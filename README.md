@@ -109,7 +109,7 @@ From [Science Museum Group - Babbage's Analytical Engine, 1834-1871. (Trial mode
 - **Ada Lovelace**: English mathematician and visionary, known for her collaboration with Charles Babbage on the Analytical Engine. She is widely recognized as the first computer programmer.
 - **Technical Contribution**:
   - Authored the famous `Notes` (A–G) appended to her translation of Luigi Federico Menabrea’s paper on the Analytical Engine.
-  - In Note G, she described a step-by-step algorithm for computing Bernoulli numbers using the Engine’s operations — the first published algorithm intended for execution by a machine.
+  - In Note G, she described a step-by-step algorithm for computing Bernoulli numbers using the Engine’s operations, the first published algorithm intended for execution by a machine.
   - Her algorithm leveraged the Engine’s ability to perform **loops** and **conditional branching**, concepts fundamental to modern programming.
 - **Conceptual Breakthrough**:
   - Proposed that the Analytical Engine could manipulate **symbols** as well as numbers, anticipating the idea of **general-purpose computation**.
