@@ -151,10 +151,44 @@ From [Computer History Museum - Ada Lovelace](https://www.computerhistory.org/ba
 <details>
   <summary><b>Turing Machine (1936)</b></summary>
 
-- **Alan Turing**: Mathematician who formalized the concept of algorithm and computation
-- **Technical significance**: Defined the limits of what can be computed; proved some problems are undecidable
-- **Key concepts**: Universal machine, halting problem, computability
-- **Architecture**: Abstract machine with infinite tape, read/write head, and finite state control
+- **Alan Turing**: British mathematician, logician, and cryptanalyst who formalized the concept of algorithm and computation, laying the foundation for theoretical computer science.
+- **Technical Significance**: Introduced the Turing Machine model in 1936, defining the limits of what can be computed. Proved that some problems are undecidable, such as the Halting Problem, establishing fundamental boundaries of computability.
+- **Key Concepts**: 
+    - Universal Turing Machine: A theoretical machine capable of simulating any other Turing machine, forming the basis for the concept of general-purpose computers.
+    - Halting Problem: Demonstrated that no algorithm can determine, for all possible programs and inputs, whether the program will eventually halt or run forever.
+        - Perfect program verification is impossible
+        - No compiler can detect all infinite loops
+        - No antivirus can detect all malware
+        - No static analysis tool can find all bugs
+    - Computability: Formalized the notion of effectively calculable functions, aligning with Church’s lambda calculus in the Church–Turing thesis.
+- **Architecture**: An abstract machine consisting of an infinite tape divided into cells, a read/write head that moves left or right, and a finite set of states with transition rules. This model captures the essence of sequential computation.
+- **Enigma Cipher Context**: The Enigma cipher was an electro-mechanical rotor machine used by Nazi Germany during World War II to encrypt military communications. Its complex system of rotating wheels and plugboard connections produced a vast number of possible settings, making the cipher extremely difficult to break without knowledge of the daily key. The security of Enigma was believed to be unbreakable at the time, and its use was central to German military strategy.
+- **Evolution of the Machine**: Enigma and Bombe: During World War II, Turing applied his theoretical insights to the practical problem of breaking the Enigma cipher. He designed the electromechanical Bombe machine, which automated the process of testing Enigma settings, representing a significant step from theoretical computation to real-world cryptanalytic machinery.
+- **Impact Beyond Theory**: 
+    - Cryptanalysis: Played a key role in breaking the Enigma cipher during World War II, significantly influencing the outcome of the war.
+    - Artificial Intelligence: Proposed the Turing Test as a criterion for machine intelligence, sparking decades of research in AI.
+    - Modern Computing: His theoretical work underpins the design of compilers, interpreters, and the concept of stored-program computers.
+- **Legacy**: Regarded as one of the fathers of computer science. The Turing Award, often called the `Nobel Prize of Computing`, is named in his honor.
+
+> The Halting Problem doesn't mean we can't analyze programs at all, it just proves we can't have a universal algorithm that works for all possible programs. This fundamental limitation shapes how we approach:
+>  - Software testing (why we need multiple approaches)
+>  - Formal verification (why we use constrained languages)
+>  - Programming language design (why some features are restricted)
+>  - Compiler optimization (why certain analyses are heuristic)
+
+<img width="506" height="389" alt="image" src="https://github.com/user-attachments/assets/f3518c04-238f-4acc-bce7-9816791b346c" />
+
+<img width="506" height="389" alt="image" src="https://github.com/user-attachments/assets/3cd9a1e8-b9a0-48b0-9c38-c77f1025372c" />
+
+From [The Enigma of Alan Turing](https://www.cia.gov/stories/story/the-enigma-of-alan-turing/)
+
+<img width="762" height="600" alt="image" src="https://github.com/user-attachments/assets/d2729e72-92a7-4355-9e46-50dff1d3875a" />
+
+<img width="800" height="195" alt="image" src="https://github.com/user-attachments/assets/426350f4-4917-426d-bf4e-56d3393a8d2f" />
+
+<img width="800" height="597" alt="image" src="https://github.com/user-attachments/assets/11fe2c2b-6c07-4770-925c-10a8d29c5d90" />
+
+From [University of Cambridge - Building the Turing Machine](https://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/turing-machine/three.html)
 
 </details>
 
