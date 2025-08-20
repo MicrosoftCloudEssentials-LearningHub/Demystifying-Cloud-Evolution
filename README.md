@@ -792,21 +792,72 @@ From [Telecommunications Networks](https://www.pinterest.com/pin/gprs-network-sc
 <details>
     <summary><b>Docker (2013)</b></summary>
 
+> Mental model: “Image layers + CoW FS (Copy-on-Write Filesystem) + kernel isolation.” <br/>
+> Containerd pulls content‑addressed layers, runc starts a namespaced process, cgroups enforce limits, overlay2 gives a writable view. <br/>
+> Files Share base data until modified; on write, new blocks are created. In Docker, overlay2 uses CoW layers. <br/>
+
 - **Founder**: Solomon Hykes (demonstrated at PyCon 2013)
 - **Technical foundations**: Linux namespaces, cgroups, overlayfs
 - **Key innovations**: Standard image format, portable runtime, layered filesystem
 - **Impact**: Transformed application packaging, testing, and deployment
+- Foundations and runtime:
+  - Kernel features: namespaces (PID:Process ID, MNT:Mount, NET:Network, UTS:UNIX Time‑Sharing, IPC:Inter‑Process Communication, user), cgroups v1/v2 (Control Groups) for CPU (Central Processing Unit)/mem (memory)/I/O (Input/Output), capabilities; seccomp (Secure Computing Mode) + AppArmor (Application Armor)/SELinux (Security‑Enhanced Linux) profiles.
+  - Union/CoW (Copy‑on‑Write) filesystems: overlay2 (common), also Btrfs (B‑tree File System)/ZFS (Zettabyte File System); copy‑on‑write layers minimize disk and speed deploys.
+  - OCI (Open Container Initiative) stack: image spec + runtime spec; containerd (daemon), runc (low‑level runtime), shim isolates container lifecycles from dockerd restarts.
+  - Image distribution: content‑addressable (SHA‑256 digests), manifest lists for multi‑arch (multiple CPU architectures); Registry v2 API, layer dedupe and HTTP (Hypertext Transfer Protocol) range pulls.
+- Build and packaging:
+  - BuildKit: parallel graph builds, cache mounts, secrets, inline build cache; multi‑stage Dockerfiles trim final images.
+  - SBOM (Software Bill of Materials)/attestations: build provenance (e.g., SLSA:Supply‑chain Levels for Software Artifacts) and image signing; reproducible builds with pinned bases.
+- Networking and storage:
+  - Drivers: bridge (default), host, none, macvlan/ipvlan; overlay (VXLAN:Virtual eXtensible LAN) for multi‑host (Swarm/libnetwork).
+  - Volumes vs bind mounts; tmpfs (temporary in‑memory FS) for in‑memory; logging drivers (json‑file:JavaScript Object Notation, fluentd, GELF:Graylog Extended Log Format).
+- Security and ops:
+  - Rootless mode, userns‑remap (user‑namespace remap), least‑privileged capability sets; read‑only rootfs (root filesystem), seccomp default profile.
+  - Resource limits: CPU quota/period, cpusets, memory/oom_score_adj (Out‑Of‑Memory score adjust); healthchecks for orchestration readiness.
+- Orchestration tie‑ins: CRI (Container Runtime Interface) integration for Kubernetes via containerd; image pull/policy, liveness/readiness/startup probes.
+
+<img width="1233" height="651" alt="image" src="https://github.com/user-attachments/assets/6a4c5835-a5ad-4b96-a6de-1e37a3d10af2" />
+
+From [Docker architecture](https://docs.docker.com/get-started/docker-overview/#docker-architecture)
 
 </details>
 
 <details>
     <summary><b>Kubernetes (2014)</b></summary>
 
+> Reconciliation loops are the core: controllers continuously compute diff(actual, desired) and take minimal actions to converge, making the system self‑healing.
+
 - **Origins**: Inspired by Google’s internal Borg system
 - **Key contributors**: Craig McLuckie, Joe Beda, Brendan Burns
 - **Technical architecture**: Declarative API, control loops, extensibility via CRDs
 - **Core concepts**: Pods, Services, Deployments, StatefulSets, ConfigMaps, Secrets
+- Control plane and API (Application Programming Interface):
+  - kube‑apiserver (front door, authentication/authorization, admission), etcd (strongly consistent KV:Key/Value store), kube‑scheduler (bin‑packing with scoring), controller‑manager (built‑in controllers), optional cloud‑controller‑manager.
+  - Declarative model: Group/Version/Resource; desired state in objects; controllers reconcile until observed ≈ desired; finalizers/ownerReferences for lifecycles.
+  - Extensibility: CRDs (Custom Resource Definitions), admission webhooks, aggregated APIs; Operators encode domain logic atop CRDs.
+- Node and data planes
+  - kubelet (pod lifecycle), container runtime via CRI (containerd/CRI‑O), CNI (Container Network Interface) for networking, CSI (Container Storage Interface) for storage.
+  - kube‑proxy (iptables/ipvs) or eBPF (extended Berkeley Packet Filter) datapaths; flat pod network (no NAT:Network Address Translation) with CNI implementations (Calico, Cilium, Flannel).
+- Workload, config, storage:
+  - Workloads: Pod, Deployment, StatefulSet, DaemonSet, Job/CronJob; Probes drive readiness/liveness/startup.
+  - Services: ClusterIP/NodePort/LoadBalancer; Ingress and the newer Gateway API for L7 (Layer 7) routing.
+  - ConfigSets: ConfigMap, Secret (encryption at rest via KMS:Key Management Service plugin); volumes via PV (PersistentVolume)/PVC (PersistentVolumeClaim)/StorageClass (access modes, reclaim, topology).
+- Scheduling and autoscale:
+  - Affinity/anti‑affinity, topology spread, taints/tolerations, priority/preemption.
+  - HPA (Horizontal Pod Autoscaler:metrics → replicas), VPA (Vertical Pod Autoscaler:resources), Cluster Autoscaler (nodes); KEDA (Kubernetes‑based Event‑Driven Autoscaling) for event‑driven scale.
+- Security and multi‑tenancy:
+  - RBAC (Role‑Based Access Control), namespaces, service accounts (bounded tokens), PSA (Pod Security Admission:baseline/restricted), NetworkPolicy (L3/4:Layer 3/4), runtimeClass/seccomp.
+  - Secrets Store CSI for external vaults; imagePolicy admission, sign/verify (Sigstore).
+- Ops and reliability: Rollouts with maxUnavailable/maxSurge, PDBs (Pod Disruption Budgets), graceful shutdown; etcd snapshots/defrag; audit logs and events.
 
+<img width="1797" height="897" alt="image" src="https://github.com/user-attachments/assets/72be68f4-aaea-49d1-97b0-f8a9a78a6b91" />
+
+From [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/)
+
+<img width="1402" height="882" alt="image" src="https://github.com/user-attachments/assets/d3bee244-7f42-4fc2-bf3a-a4133cb4d698" />
+
+From [K8s cluster components](https://kubernetes.io/docs/concepts/architecture/)
+  
 </details>
 
 <details>
