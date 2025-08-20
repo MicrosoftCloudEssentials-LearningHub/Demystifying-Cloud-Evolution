@@ -632,6 +632,14 @@ From [University of Washington - The Cybersecurity Implications of Chinese Under
 
 From [The incredible story of the underwater internet](https://www.techradar.com/news/internet/the-incredible-story-of-the-underwater-internet-1291295)
 
+<img width="588" height="573" alt="image" src="https://github.com/user-attachments/assets/5ab9859a-4621-4515-b6c0-889333e5c7e4" />
+
+From [General schematic diagram of a multi-layer space information network](https://www.researchgate.net/figure/General-schematic-diagram-of-a-multi-layer-space-information-network_fig1_356546892)
+
+<img width="735" height="537" alt="image" src="https://github.com/user-attachments/assets/af1fd854-5aef-4e71-ae10-859afd2b3ac8" />
+
+From [Telecommunications Networks](https://www.pinterest.com/pin/gprs-network-scheme-in-telecommunications-networks--996843698745182256/)
+
 </details>
 
 ### Cloud Computing Era (1990s-2010)
@@ -666,30 +674,110 @@ From [The incredible story of the underwater internet](https://www.techradar.com
 <details>
   <summary><b>AWS EC2/S3 (2006)</b></summary>
 
+> `Infrastructure as API`: declare topology (instances, networks, volumes, buckets) and desired counts; the control plane validates and places; the data plane carries packets/IO. This blueprint is echoed across all major clouds.
+
 - **Key people**: Andy Jassy (AWS CEO), Werner Vogels (CTO)
 - **Technical innovations**: API-driven infrastructure, pay-per-use model
 - **Architecture**: Multi-tenant infrastructure, virtualization at scale
 - **Impact**: Fundamentally changed IT procurement and operations models
+- Control vs data planes:
+  - Control plane (APIs): instance/volume/image lifecycle, placement, health, and inventory; account‑scoped policy and quotas; idempotent create/update with request tokens.
+  - Data plane (packet/IO paths): hypervisor isolation + virtual NIC/block devices move bytes; separate from control to keep runtime traffic flowing during control-plane events.
+- Compute isolation and lifecycle:
+  - Early EC2 ran Xen (paravirt → HVM); later generations use Nitro (dedicated hardware cards offloading network/storage and minimizing host attack surface) on KVM.
+  - CPU/mem isolation via VT‑x/AMD‑V + IOMMU; per‑tenant vNIC/vBlock devices; DMA guarded by IOMMU.
+  - Instance states: pending → running → {stopping|stopped} → {shutting‑down|terminated}; API idempotency and eventual consistency on reads.
+  - Boot/user‑data: 169.254.169.254 metadata; user‑data passed to cloud‑init for early config.
+- Images and block storage:
+  - AMI: root snapshot + metadata (virtualization type, device mapping); older AKI/ARI (kernel/ramdisk) images existed initially.
+  - EBS (network block storage): attach/detach over network; snapshots are incremental, copy‑on‑write; volume types trade latency vs IOPS throughput.
+  - Instance store: ephemeral NVMe/SATA directly on host, very fast but non‑persistent.
+- Networking primitives:
+  - EC2‑Classic (initial) then VPC (virtual private clouds) with subnets, route tables, NAT, NACLs; security groups are stateful firewalls at the instance ENI.
+  - Elastic IPs, ENIs (multi‑NIC), Placement Groups (latency/bandwidth aware), and later SR‑IOV/ENA for high PPS/low jitter.
+- Elastic primitives (autoscale/load):
+  - Auto Scaling Groups (ASG): desired/min/max size; policies based on CloudWatch (CPU, RPS, Q length); launch templates/configs define AMI + instance type.
+  - Elastic Load Balancing (ELB/ALB/NLB): spreads traffic across instances/AZs; health checks drive replace/heal loops.
+- S3 object storage model:
+  - Buckets (per region) with a flat key namespace; `folders` are prefix conventions.
+  - Objects are immutable; writes create new versions if versioning is enabled; range GETs and multipart upload for large objects.
+  - Consistency: originally eventual for overwrite/list; later strong read‑after‑write (not in the 2006 launch).
+  - Durability/availability: multi‑AZ replication in a region targeting `11 nines` durability; storage classes + lifecycle policies for cost/latency trade‑offs.
+  - Access: signed REST/HTTP APIs, pre‑signed URLs, bucket policies/IAM; optional server‑side encryption and KMS integration.
+- Reliability and economics:
+  - Regions → Availability Zones (independent power/network); fault domains constrain placement and replication.
+  - Pay‑as‑you‑go; later options add Reserved/Spot/ Savings instruments; right‑size and autoscale to cut idle cost.
 
 </details>
 <details>
     <summary><b>Google App Engine (2008)</b></summary>
 
+> Mental model: Provide code + config; the platform provisions sandboxes, scales instances on demand, and wires managed services (Datastore, Memcache, Task Queues) without VM management.
+
 - **Technical approach**: Platform-as-a-Service (PaaS) model
 - **Developer experience**: Focus on application code, not infrastructure
 - **Constraints**: Language/framework restrictions, quotas, managed scaling
 - **Impact**: Introduced developers to serverless concepts and auto-scaling
-
+- Architecture and runtimes (early):
+  - Sandboxed, opinionated runtimes: initially Python 2.5 → later Java, Go, etc. Limited syscalls and no arbitrary native code.
+  - Request model: short request deadlines (initially ~30s), no long-lived background threads; later added Task Queues and Cron for async/offline work.
+  - Configuration: app.yaml (handlers, instance class, scaling mode), index.yaml (Datastore composite indexes), cron.yaml, queue.yaml.
+- Scaling modes and instances:
+  - Automatic, Basic, Manual scaling; “scale to zero” when idle on Automatic.
+  - Instance classes (F1/F2/…, memory/CPU buckets). Warmup requests reduce cold-start latency.
+  - Versioned deployments; traffic splitting by version (percent or cookie-based) enables canaries/gradual rollouts.
+- Built-in services:
+  - Datastore (Bigtable-based): entity groups for transactional boundaries; ancestor queries offer strong consistency; non-ancestor queries historically eventual-consistent; later options improved consistency.
+  - Task Queues, Cron, Memcache API, Users API, Images, Mail, URLFetch (egress HTTP(S)).
+- Storage and persistence:
+  - Blobstore (early) for large objects; later Cloud Storage integration. Strong vs eventual consistency trade-offs documented.
+  - Logs and metrics surfaced via Admin Console; per-app quotas and budgets to avoid noisy-neighbor and runaway costs.
+- Networking and security:
+  - Outbound HTTP(S) via URLFetch proxy; inbound is HTTP(S) via Google frontends with load balancing and SSL termination.
+  - App identity/service accounts for calling Google APIs; access control via project IAM as the platform evolved.
+- Developer workflow: Declarative configs + gcloud tooling; zero-manage infra (no servers to patch). Vendor lock-in mitigated over time with portable APIs and later 2nd-gen runtimes.
+- Lasting impact: Popularized autoscale, managed services, traffic-splitting, and minimal ops for web apps—precursors to modern serverless patterns.
+    
 </details>
 
 <details>
     <summary><b>Microsoft Azure (2010)</b></summary>
 
+> `Templates as contracts`: ARM/Bicep describe desired state; resource providers validate, place, and reconcile; policy enforces guardrails; identity authenticates every control-plane call.
+
 - **Initial focus**: Platform-as-a-Service with .NET integration
 - **Evolution**: Expanded to full IaaS/PaaS/SaaS portfolio
 - **Technical innovations**: Resource Manager model, integrated identity with Azure AD
 - **Enterprise focus**: Hybrid capabilities, enterprise compliance certifications
-
+- Fabric era → Cloud Services (classic):
+  - Fabric Controller managed clusters (`stamps`) and deployed Web/Worker Roles from service packages (csdef/cscfg).
+  - Availability primitives: Fault Domains (rack/power) and Update Domains (rolling upgrade orchestration).
+- Azure Resource Manager (ARM) evolution:
+  - ARM introduced resource groups, resource providers (RP), and idempotent, declarative deployments (JSON; now Bicep).
+  - API versioning per RP; async operations with operation status; what-if previews; deployment at RG/subscription/tenant scopes.
+  - Governance: locks, tags, policy assignments, blueprints/initiatives for standardized environments.
+- Identity, keys, and compliance
+  - Azure AD (Entra ID) for identity/RBAC; Managed Identity for workloads; Key Vault for secrets/keys/certs with RBAC/ACLs.
+  - Azure Policy for guardrails (deny/append/deployIfNotExists); Activity Log for control-plane auditing.
+- Networking stack:
+  - VNets, subnets, private IPs, public IPs (SKUs), NSGs (stateful firewall), UDRs, Application Security Groups.
+  - Load Balancers (Basic/Standard), Application Gateway (L7), Azure Firewall, Front Door, Private Link/Endpoints, VNet Peering, ExpressRoute.
+  - DNS: private/public zones; Service Endpoints (optimized service access) and Private Link (private data-plane).
+- Compute and storage:
+  - VMs with availability sets and zones; VM Scale Sets (VMSS) for homogeneous pools; extensions (Custom Script, agents).
+  - Managed Disks (Standard/Premium; LRS/ZRS) and Storage accounts with replication options (LRS/ZRS/GRS/GZRS/RAGRS).
+  - Images: Shared Image Gallery; disk snapshots; proximity placement groups for latency-sensitive workloads.
+- Observability and operations:
+  - Azure Monitor (metrics, logs), Log Analytics workspaces, Diagnostic settings; Service Health and activity diagnostics.
+  - Update/maintenance: rolling upgrades using Update Domains; Maintenance control for host updates on select SKUs.
+- Orchestration tie-ins (AKS and platform services):
+  - AKS: managed control plane, node pools on VMSS, cluster autoscaler; networking via Azure CNI or kubenet; Azure Load Balancer/AGIC integration.
+  - Identity integration (managed identity, ACR pull), Azure Policy for Kubernetes, Private Clusters, availability zones awareness.
+  - PaaS services (App Service, Functions, Cosmos DB, Service Bus) built on the same intent→validate→place control-plane principles.
+- Security and cost controls:
+  - Defender for Cloud recommendations, Just-In-Time VM access, disk/SAS policies.
+  - Budgets and cost analysis; reservations/spot for compute optimization.
+    
 </details>
 
 ### Cloud-Native & Beyond (2013-Present)
@@ -700,7 +788,6 @@ From [The incredible story of the underwater internet](https://www.techradar.com
 >  - Microservices architectures with service meshes
 >  - Developer experience improvements through abstraction
 >  - Growing focus on energy efficiency and carbon footprint
-
 
 <details>
     <summary><b>Docker (2013)</b></summary>
