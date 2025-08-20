@@ -73,19 +73,21 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
 
 <details>
   <summary><b>Analytical Engine (1837)</b></summary>
-  - **Charles Babbage**: Mathematician and engineer who designed but never built this mechanical computer
-  - **Technical features**: Included an ALU ("mill"), memory ("store"), and input/output mechanisms
-  - **Architecture**: Designed for general-purpose computing with a separation of memory and processing
-  - **Significance**: First complete design for a general-purpose programmable computing device
+
+- **Charles Babbage**: Mathematician and engineer who designed but never built this mechanical computer
+- **Technical features**: Included an ALU ("mill"), memory ("store"), and input/output mechanisms
+- **Architecture**: Designed for general-purpose computing with a separation of memory and processing
+- **Significance**: First complete design for a general-purpose programmable computing device
 
 </details>
 
 <details>
   <summary><b>First Algorithm (1843)</b></summary>
-  - **Ada Lovelace**: Mathematician who wrote notes on the Analytical Engine
-  - **Technical contribution**: Created an algorithm to compute Bernoulli numbers
-  - **Conceptual breakthrough**: Recognized that computers could manipulate symbols, not just numbers
-  - **Legacy**: Considered the first computer programmer; Ada programming language named after her
+
+- **Ada Lovelace**: Mathematician who wrote notes on the Analytical Engine
+- **Technical contribution**: Created an algorithm to compute Bernoulli numbers
+- **Conceptual breakthrough**: Recognized that computers could manipulate symbols, not just numbers
+- **Legacy**: Considered the first computer programmer; Ada programming language named after her
 
 </details>
 
