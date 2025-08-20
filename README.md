@@ -34,7 +34,6 @@ Last updated: 2025-07-30
 
 </details>
 
-
 ## History → Cloud → Azure 
 
 <img width="1143" height="921" alt="cloud-evolution-timeline-Computing Timeline drawio" src="https://github.com/user-attachments/assets/4096eb52-7a0e-4a98-8b01-0b8e7884cdd8" />
@@ -46,7 +45,6 @@ Last updated: 2025-07-30
 >  - The notion of a general-purpose machine that can be programmed for different tasks
 >  - Separation of data and instructions
 >  - Sequential execution of operations
-
 
 <details>
   <summary><b>Jacquard Loom (1801)</b></summary>
@@ -92,35 +90,44 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
 </details>
 
 
+## Formal Foundations (1936-1945)
+
+> This era formalized computing theory and produced the first working electronic computers:
+>   - Proved the theoretical basis and limits of computation
+>   - Transition from mechanical to electrical computing (1000x speedup)
+>   - Established binary digital representation as the foundation for modern computers
+>   - Created both the theory and practical implementations of programmable machines
+
 <details>
-  <summary><b>Formal Foundations (1936-1945)</b></summary>
+  <summary><b>Turing Machine (1936)</b></summary>
 
-  ### Key Innovations
-  - **Turing Machine (1936)**
-    - **Alan Turing**: Mathematician who formalized the concept of algorithm and computation
-    - **Technical significance**: Defined the limits of what can be computed; proved some problems are undecidable
-    - **Key concepts**: Universal machine, halting problem, computability
-    - **Architecture**: Abstract machine with infinite tape, read/write head, and finite state control
+- **Alan Turing**: Mathematician who formalized the concept of algorithm and computation
+- **Technical significance**: Defined the limits of what can be computed; proved some problems are undecidable
+- **Key concepts**: Universal machine, halting problem, computability
+- **Architecture**: Abstract machine with infinite tape, read/write head, and finite state control
 
-  - **Zuse Z3 (1941)**
-    - **Konrad Zuse**: German engineer who built the first programmable, fully automatic digital computer
-    - **Technical features**: Used 2,600 relays, binary floating-point numbers, 22-bit word length
-    - **Limitations**: No conditional branching capability (had to be simulated through multiple program paths)
-    - **Significance**: First working programmable computer; operated at 5-10 Hz
-
-  - **ENIAC (1945)**
-    - **John Mauchly & J. Presper Eckert**: Led the engineering team at University of Pennsylvania
-    - **Technical features**: 17,468 vacuum tubes, 5 million operations per second, 20 accumulators
-    - **Programming**: Initially programmed by rewiring (took days); later modified for stored-program operation
-    - **Applications**: Originally calculated artillery firing tables; later used for nuclear weapon design
-
-  ### Technical Context
-  This era formalized computing theory and produced the first working electronic computers:
-  - Proved the theoretical basis and limits of computation
-  - Transition from mechanical to electrical computing (1000x speedup)
-  - Established binary digital representation as the foundation for modern computers
-  - Created both the theory and practical implementations of programmable machines
 </details>
+
+<details>
+  <summary><b>Zuse Z3 (1941)</b></summary>
+
+- **Konrad Zuse**: German engineer who built the first programmable, fully automatic digital computer
+- **Technical features**: Used 2,600 relays, binary floating-point numbers, 22-bit word length
+- **Limitations**: No conditional branching capability (had to be simulated through multiple program paths)
+- **Significance**: First working programmable computer; operated at 5-10 Hz
+
+</details>
+
+<details>
+  <summary><b>ENIAC (1945)</b></summary>
+
+- **John Mauchly & J. Presper Eckert**: Led the engineering team at University of Pennsylvania
+- **Technical features**: 17,468 vacuum tubes, 5 million operations per second, 20 accumulators
+- **Programming**: Initially programmed by rewiring (took days); later modified for stored-program operation
+- **Applications**: Originally calculated artillery firing tables; later used for nuclear weapon design
+
+</details>
+
 
 <details>
   <summary><b>PC & Internet Revolution (1950s-1990)</b></summary>
