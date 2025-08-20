@@ -25,6 +25,7 @@ Last updated: 2025-07-30
 - [Linux Foundation (power management overview)](https://www.kernel.org/doc/html/latest/)
 - [Intel 4004 history](https://www.intel.com/content/www/us/en/history/museum-story-of-intel-4004.html)
 - [National Museums Scotland - The Jacquard loom: innovation in textiles and computing](https://www.nms.ac.uk/discover-catalogue/the-jacquard-loom-innovation-in-textiles-and-computing)
+- [Science Museum Group - Babbage's Analytical Engine, 1834-1871. (Trial model)](https://collection.sciencemuseumgroup.org.uk/objects/co62245/babbages-analytical-engine-1834-1871-trial-model)
 
 </details>
 
@@ -74,10 +75,31 @@ From [National Museums Scotland - The Jacquard loom: innovation in textiles and 
 <details>
   <summary><b>Analytical Engine (1837)</b></summary>
 
-- **Charles Babbage**: Mathematician and engineer who designed but never built this mechanical computer
-- **Technical features**: Included an ALU ("mill"), memory ("store"), and input/output mechanisms
-- **Architecture**: Designed for general-purpose computing with a separation of memory and processing
-- **Significance**: First complete design for a general-purpose programmable computing device
+- **Inventor**: Charles Babbage, an English mathematician and engineer, often called the `father of the computer`. Although the machine was never completed during his lifetime, his design laid the foundation for modern computing.
+- **Historical Context**: Conceived in 1837 as an evolution of Babbage’s earlier Difference Engine, the Analytical Engine was designed during the Industrial Revolution, when mechanical engineering was advancing rapidly.
+- **Technical Features**:
+  - **Arithmetic Logic Unit (ALU)**: Known as the `mill`, it could perform basic arithmetic operations (addition, subtraction, multiplication, division).
+  - **Memory**: Called the `store`, it could hold up to 1,000 numbers of 40 digits each.
+  - **Input/Output**: Planned to use punched cards for input (inspired by Jacquard looms) and a printer for output, along with a curve plotter and bell.
+  - **Control Flow**: Included conditional branching and loops, making it Turing-complete in concept.
+- **Architecture**:
+  - **Separation of Components**: Distinguished between the `store` (memory) and the `mill` (processor), a principle still used in modern von Neumann architecture.
+  - **Programmability**: Programs were to be fed via punched cards, allowing general-purpose computation rather than a single fixed task.
+- **Significance**:
+  - First complete design for a `general-purpose programmable computing device`.
+  - Influenced later pioneers like Ada Lovelace, who wrote what is considered the first algorithm intended for a machine.
+  - Although never built due to technological and financial limitations, its conceptual design anticipated key elements of modern computers.
+- **Legacy**:
+  - Demonstrated the feasibility of automated computation.
+  - Inspired future generations of computer scientists and engineers, bridging the gap between mechanical calculation and electronic computing.
+
+  <img width="736" height="576" alt="image" src="https://github.com/user-attachments/assets/61d82642-ba30-4a67-9c6d-9786ab747d96" />
+  
+  <img width="458" height="576" alt="image" src="https://github.com/user-attachments/assets/84a3598f-4d14-4d66-ad47-50ad8d77a82b" />
+  
+  <img width="456" height="576" alt="image" src="https://github.com/user-attachments/assets/5c0a3946-7158-4710-9b84-dad2bd23edd5" />
+
+From [Science Museum Group - Babbage's Analytical Engine, 1834-1871. (Trial model)](https://collection.sciencemuseumgroup.org.uk/objects/co62245/babbages-analytical-engine-1834-1871-trial-model)
 
 </details>
 
