@@ -270,7 +270,7 @@ az aks update -g ResourceGroup -n EfficientAKS --enable-cluster-autoscaler --min
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1332-limegreen" alt="Total views">
-  <p>Refresh Date: 2025-08-20</p>
+  <img src="https://img.shields.io/badge/Total%20views-1420-limegreen" alt="Total views">
+  <p>Refresh Date: 2025-08-21</p>
 </div>
 <!-- END BADGE -->

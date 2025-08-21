@@ -4,7 +4,7 @@
 [![GitHub](https://img.shields.io/badge/--181717?logo=github&logoColor=ffffff)](https://github.com/)
 [brown9804](https://github.com/brown9804)
 
-Last updated: 2025-08-20
+Last updated: 2025-08-21
 
 -----------------------------
 
@@ -13,32 +13,21 @@ Last updated: 2025-08-20
 <details>
 <summary><b>List of References</b> (Click to expand)</summary>
 
-- Azure status and service health
-	- https://status.azure.com
-	- https://learn.microsoft.com/azure/service-health/overview
-- Azure regional services and availability
-	- https://azure.microsoft.com/global-infrastructure/services/
-	- https://learn.microsoft.com/azure/availability-zones/az-overview
-- VM sizes, SKUs, and quotas
-	- https://learn.microsoft.com/azure/virtual-machines/sizes
-	- https://learn.microsoft.com/azure/quotas/quotas-overview
-	- https://learn.microsoft.com/azure/quotas/per-vm-family-quota-requests
-- Capacity error patterns and mitigations
-	- https://learn.microsoft.com/azure/azure-resource-manager/troubleshooting/error-codes
-	- https://learn.microsoft.com/azure/virtual-machines/troubleshooting/allocation-failure
-- Reservations, savings plans, and scale sets
-	- https://learn.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations
-	- https://learn.microsoft.com/azure/virtual-machine-scale-sets/overview
-- AKS scaling and schedulability
-	- https://learn.microsoft.com/azure/aks/cluster-autoscaler
-	- https://learn.microsoft.com/azure/aks/start-stop-cluster
-- Storage and networking capacity
-	- https://learn.microsoft.com/azure/storage/common/scalability-targets-standard-account
-	- https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits
-- Azure Advisor and capacity planning
-	- https://learn.microsoft.com/azure/advisor/advisor-overview
-- Workload identity and regional expansion
-	- https://learn.microsoft.com/azure/reliability/cross-region-replication-azure
+- [Azure status](https://status.azure.com)
+- [Azure service health](https://learn.microsoft.com/azure/service-health/overview)
+- [Azure global infrastructure services](https://azure.microsoft.com/global-infrastructure/services/)
+- [Azure availability zones overview](https://learn.microsoft.com/azure/availability-zones/az-overview)
+- [Azure VM sizes](https://learn.microsoft.com/azure/virtual-machines/sizes)
+- [Azure quotas overview](https://learn.microsoft.com/azure/quotas/quotas-overview)
+- [Azure VM allocation failure troubleshooting](https://learn.microsoft.com/azure/virtual-machines/troubleshooting/allocation-failure)
+- [Azure reservations](https://learn.microsoft.com/azure/cost-management-billing/reservations/save-compute-costs-reservations)
+- [Azure virtual machine scale sets](https://learn.microsoft.com/azure/virtual-machine-scale-sets/overview)
+- [AKS cluster autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
+- [Start/stop AKS cluster](https://learn.microsoft.com/azure/aks/start-stop-cluster)
+- [Azure storage scalability targets](https://learn.microsoft.com/azure/storage/common/scalability-targets-standard-account)
+- [Azure subscription service limits](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits)
+- [Azure Advisor overview](https://learn.microsoft.com/azure/advisor/advisor-overview)
+- [Cross-region replication in Azure](https://learn.microsoft.com/azure/reliability/cross-region-replication-azure)
 
 </details>
 
@@ -175,9 +164,9 @@ Last updated: 2025-08-20
 Get-AzVMSize -Location eastus | Sort-Object Name | Select-Object -First 10
 ```
 
-```json
-// Bicep (snippet) - VMSS Flexible with multiple SKUs
-// Note: illustrative snippet; adapt to your module style
+```text
+Bicep (snippet) — VMSS Flexible with multiple SKUs
+Note: illustrative snippet; adapt to your module style
 ```
 
 ```bicep
@@ -186,79 +175,79 @@ param skuPrimary string = 'Standard_D4s_v5'
 param skuAlt string = 'Standard_D2s_v5'
 
 resource vmss 'Microsoft.Compute/virtualMachineScaleSets@2024-03-01' = {
-	name: 'web-flex'
-	location: location
-	sku: {
-		name: skuPrimary
-		capacity: 2
-	}
-	properties: {
-		orchestrationMode: 'Flexible'
-		upgradePolicy: { mode: 'Rolling' }
-		virtualMachineProfile: {
-			priorityMixPolicy: {
-				baseRegularPriorityCount: 2
-			}
-			osProfile: {
-				computerNamePrefix: 'web'
-				adminUsername: 'azureuser'
-			}
-			storageProfile: {
-				imageReference: {
-					publisher: 'Canonical'
-					offer: '0001-com-ubuntu-server-jammy'
-					sku: '22_04-lts'
-					version: 'latest'
-				}
-			}
-			networkProfile: {
-				networkInterfaceConfigurations: [
-					{
-						name: 'nic'
-						properties: {
-							primary: true
-							ipConfigurations: [{ name: 'ipconfig' }]
-						}
-					}
-				]
-			}
-		}
-	}
+ name: 'web-flex'
+ location: location
+ sku: {
+  name: skuPrimary
+  capacity: 2
+ }
+ properties: {
+  orchestrationMode: 'Flexible'
+  upgradePolicy: { mode: 'Rolling' }
+  virtualMachineProfile: {
+   priorityMixPolicy: {
+    baseRegularPriorityCount: 2
+   }
+   osProfile: {
+    computerNamePrefix: 'web'
+    adminUsername: 'azureuser'
+   }
+   storageProfile: {
+    imageReference: {
+     publisher: 'Canonical'
+     offer: '0001-com-ubuntu-server-jammy'
+     sku: '22_04-lts'
+     version: 'latest'
+    }
+   }
+   networkProfile: {
+    networkInterfaceConfigurations: [
+     {
+      name: 'nic'
+      properties: {
+       primary: true
+       ipConfigurations: [{ name: 'ipconfig' }]
+      }
+     }
+    ]
+   }
+  }
+ }
 }
 
 // Alternate SKU VM resource to join VMSS Flex as instance
 resource vmAlt 'Microsoft.Compute/virtualMachines@2024-03-01' = {
-	name: 'web-alt-001'
-	location: location
-	properties: {
-		virtualMachineScaleSet: {
-			id: vmss.id
-		}
-		hardwareProfile: {
-			vmSize: skuAlt
-		}
-		storageProfile: {
-			imageReference: {
-				publisher: 'Canonical'
-				offer: '0001-com-ubuntu-server-jammy'
-				sku: '22_04-lts'
-				version: 'latest'
-			}
-		}
-		osProfile: {
-			computerName: 'web-alt-001'
-			adminUsername: 'azureuser'
-			linuxConfiguration: { disablePasswordAuthentication: true }
-		}
-		networkProfile: {
-			networkInterfaces: [
-				{
-					id: resourceId('Microsoft.Network/networkInterfaces', 'nic-web-alt-001')
-					properties: { primary: true }
-				}
-			]
-		}
-	}
+ name: 'web-alt-001'
+ location: location
+ properties: {
+  virtualMachineScaleSet: {
+   id: vmss.id
+  }
+  hardwareProfile: {
+   vmSize: skuAlt
+  }
+  storageProfile: {
+   imageReference: {
+    publisher: 'Canonical'
+    offer: '0001-com-ubuntu-server-jammy'
+    sku: '22_04-lts'
+    version: 'latest'
+   }
+  }
+  osProfile: {
+   computerName: 'web-alt-001'
+   adminUsername: 'azureuser'
+   linuxConfiguration: { disablePasswordAuthentication: true }
+  }
+  networkProfile: {
+   networkInterfaces: [
+    {
+     id: resourceId('Microsoft.Network/networkInterfaces', 'nic-web-alt-001')
+     properties: { primary: true }
+    }
+   ]
+  }
+ }
 }
 ```
 
@@ -291,33 +280,34 @@ az vm list-skus --location eastus --output table | Select-String D4s_v5
 ## Error-to-Action mapping
 
 - AllocationFailure
-	- Immediate: Retry with next allowed SKU (same region, any AZ) via VMSS Flex or parameterized IaC
-	- Next: Try alternative AZ; if still failing, try paired/secondary region
-	- Follow-up: Open capacity ticket only if pattern persists across AZs/regions; enrich with Activity Log evidence
+  - Immediate: Retry with next allowed SKU (same region, any AZ) via VMSS Flex or parameterized IaC
+  - Next: Try alternative AZ; if still failing, try paired/secondary region
+  - Follow-up: Open capacity ticket only if pattern persists across AZs/regions; enrich with Activity Log evidence
 
 - SKUNotAvailable
-	- Immediate: Switch to nearest-performance SKU or adjacent family (e.g., Dv5 ↔ Ev5) from an approved allowlist
-	- Next: Check region availability list; move only burst capacity when possible
-	- Follow-up: Update allowlist; revisit reservations/savings plans to align with observed availability
+  - Immediate: Switch to nearest-performance SKU or adjacent family (e.g., Dv5 ↔ Ev5) from an approved allowlist
+  - Next: Check region availability list; move only burst capacity when possible
+  - Follow-up: Update allowlist; revisit reservations/savings plans to align with observed availability
 
 - QuotaExceeded
-	- Immediate: Re-balance to other families/regions or temporarily cap scale-out
-	- Next: Auto-raise per-VM-family vCPU quota with approval workflow; block rollout until raised
-	- Follow-up: Increase proactive thresholds; embed What-If gates in CI
+  - Immediate: Re-balance to other families/regions or temporarily cap scale-out
+  - Next: Auto-raise per-VM-family vCPU quota with approval workflow; block rollout until raised
+  - Follow-up: Increase proactive thresholds; embed What-If gates in CI
 
 - OverconstrainedAllocationRequest / ZonalAllocationFailed
-	- Immediate: Relax constraints (allow any-of zones; remove non-critical PPG)
-	- Next: Add alternate SKU or region; retry with wider placement
-	- Follow-up: Document minimal viable constraints in design
+  - Immediate: Relax constraints (allow any-of zones; remove non-critical PPG)
+  - Next: Add alternate SKU or region; retry with wider placement
+  - Follow-up: Document minimal viable constraints in design
 
 ## Alerting and auto-remediation
 
 - Alerts to create
-	- Activity log alert: AllocationFailure / SKUNotAvailable / QuotaExceeded events
-	- Metric alerts: VMSS pending instances, AKS Pending pods > N for M minutes
-	- Service Health: Regional capacity advisories for target regions
+  - Activity log alert: AllocationFailure / SKUNotAvailable / QuotaExceeded events
+  - Metric alerts: VMSS pending instances, AKS Pending pods > N for M minutes
+  - Service Health: Regional capacity advisories for target regions
 
 - KQL alert (activity failures)
+
 ```kql
 AzureActivity
 | where TimeGenerated > ago(15m)
@@ -328,37 +318,38 @@ AzureActivity
 ```
 
 - Auto-remediation patterns
-	- Logic App/Function: on alert, re-deploy with next SKU/AZ, or create quota request; attach incident context
-	- Pipeline gate: block infra rollout if capacity alerts fired in last 30 minutes
-	- Ticketing integration: create/route incident with runbook decision tree
+  - Logic App/Function: on alert, re-deploy with next SKU/AZ, or create quota request; attach incident context
+  - Pipeline gate: block infra rollout if capacity alerts fired in last 30 minutes
+  - Ticketing integration: create/route incident with runbook decision tree
 
 ## CI/CD gates and policy guardrails
 
 - Pipeline gates
-	- Deployment What-If on all infra PRs; fail when QuotaExceeded is predicted
-	- SKU availability probe per target region before rollout
-	- Require populated fallback parameters (alt SKUs, secondary region)
+  - Deployment What-If on all infra PRs; fail when QuotaExceeded is predicted
+  - SKU availability probe per target region before rollout
+  - Require populated fallback parameters (alt SKUs, secondary region)
 
 - Policy guardrails (examples)
-	- Deny disallowed SKUs; Audit PPG usage unless tag reason is present
-	- Require minRegions >= 2 for tier-X services
-	- Enforce tags: region-priority, sku-allowlist-version
+  - Deny disallowed SKUs; Audit PPG usage unless tag reason is present
+  - Require minRegions >= 2 for tier-X services
+  - Enforce tags: region-priority, sku-allowlist-version
 
 ## Quota-as-Code automation
 
 - Desired state approach
-	- Track per-VM-family vCPU quotas by region in config (YAML/JSON)
-	- Pipeline reconciles desired vs actual and raises requests ahead of scale events
+  - Track per-VM-family vCPU quotas by region in config (YAML/JSON)
+  - Pipeline reconciles desired vs actual and raises requests ahead of scale events
 
 - Example outline (PowerShell pseudocode)
+
 ```powershell
 $desired = @(
-	@{ region='eastus';  family='Dsv5'; vcpus=200 },
-	@{ region='eastus2'; family='Dsv5'; vcpus=200 }
+ @{ region='eastus';  family='Dsv5'; vcpus=200 },
+ @{ region='eastus2'; family='Dsv5'; vcpus=200 }
 )
 foreach ($q in $desired) {
-	# Get current quota for $q.family in $q.region
-	# If current < $q.vcpus → submit quota increase request and notify approvers
+ # Get current quota for $q.family in $q.region
+ # If current < $q.vcpus → submit quota increase request and notify approvers
 }
 ```
 
@@ -370,50 +361,51 @@ foreach ($q in $desired) {
 # policy.yaml
 version: 1
 policy:
-	regionPriority:
-		- eastus
-		- eastus2
-		- centralus
-	skuAllowlist:
-		- Standard_D4s_v5
-		- Standard_D2s_v5
-		- Standard_E4s_v5
-	constraints:
-		zones: any
-		requireAcceleratedNetworking: true
-	quotas:
-		compute:
-			Dsv5:
-				eastus: 200
-				eastus2: 200
-		publicIps:
-			eastus: 100
+ regionPriority:
+  - eastus
+  - eastus2
+  - centralus
+ skuAllowlist:
+  - Standard_D4s_v5
+  - Standard_D2s_v5
+  - Standard_E4s_v5
+ constraints:
+  zones: any
+  requireAcceleratedNetworking: true
+ quotas:
+  compute:
+   Dsv5:
+    eastus: 200
+    eastus2: 200
+  publicIps:
+   eastus: 100
 alerts:
-	allocationFailure:
-		window: PT15M
-		threshold: 1
+ allocationFailure:
+  window: PT15M
+  threshold: 1
 ```
 
 ```json
 {
-	"version": 1,
-	"policy": {
-		"regionPriority": ["eastus", "eastus2", "centralus"],
-		"skuAllowlist": ["Standard_D4s_v5", "Standard_D2s_v5", "Standard_E4s_v5"],
-		"constraints": {
-			"zones": "any",
-			"requireAcceleratedNetworking": true
-		},
-		"quotas": {
-			"compute": { "Dsv5": { "eastus": 200, "eastus2": 200 } },
-			"publicIps": { "eastus": 100 }
-		}
-	},
-	"alerts": { "allocationFailure": { "window": "PT15M", "threshold": 1 } }
+ "version": 1,
+ "policy": {
+  "regionPriority": ["eastus", "eastus2", "centralus"],
+  "skuAllowlist": ["Standard_D4s_v5", "Standard_D2s_v5", "Standard_E4s_v5"],
+  "constraints": {
+   "zones": "any",
+   "requireAcceleratedNetworking": true
+  },
+  "quotas": {
+   "compute": { "Dsv5": { "eastus": 200, "eastus2": 200 } },
+   "publicIps": { "eastus": 100 }
+  }
+ },
+ "alerts": { "allocationFailure": { "window": "PT15M", "threshold": 1 } }
 }
 ```
 
 Guidance
+
 - Source-control the schema; bump version when policy changes. Validate in CI before deploys.
 - Feed this into your quota reconciler and your fallback selector to keep behaviors consistent.
 
@@ -431,42 +423,42 @@ param lawResourceId string // Log Analytics workspace resourceId for KQL alert s
 
 // Logic App (Consumption) with an HTTP trigger named 'manual'
 resource wf 'Microsoft.Logic/workflows@2019-05-01' = {
-	name: 'cap-fallback-la'
-	location: location
-	properties: {
-		state: 'Enabled'
-		definition: {
-			'$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
-			'contentVersion': '1.0.0.0'
-			'parameters': {}
-			'triggers': {
-				'manual': {
-					'type': 'Request',
-					'kind': 'Http',
-					'inputs': {
-						'schema': {}
-					}
-				}
-			}
-			'actions': {
-				'DecideAndInvoke': {
-					'type': 'Http',
-					'inputs': {
-						'method': 'POST',
-						// TODO: replace with your pipeline/runbook endpoint
-						'uri': 'https://example.com/fallback-run',
-						'headers': {
-							'Content-Type': 'application/json'
-						},
-						'body': {
-							'alert': "@{triggerBody()}"
-						}
-					}
-				}
-			},
-			'outputs': {}
-		}
-	}
+ name: 'cap-fallback-la'
+ location: location
+ properties: {
+  state: 'Enabled'
+  definition: {
+   '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
+   'contentVersion': '1.0.0.0'
+   'parameters': {}
+   'triggers': {
+    'manual': {
+     'type': 'Request',
+     'kind': 'Http',
+     'inputs': {
+      'schema': {}
+     }
+    }
+   }
+   'actions': {
+    'DecideAndInvoke': {
+     'type': 'Http',
+     'inputs': {
+      'method': 'POST',
+      // TODO: replace with your pipeline/runbook endpoint
+      'uri': 'https://example.com/fallback-run',
+      'headers': {
+       'Content-Type': 'application/json'
+      },
+      'body': {
+       'alert': "@{triggerBody()}"
+      }
+     }
+    }
+   },
+   'outputs': {}
+  }
+ }
 }
 
 // Build Logic App trigger callback URL for Action Group receiver
@@ -474,127 +466,129 @@ var wfTriggerCallback = listCallbackUrl(resourceId('Microsoft.Logic/workflows/tr
 
 // Action Group with Logic App receiver (Common Alert Schema recommended)
 resource ag 'Microsoft.Insights/actionGroups@2023-01-01' = {
-	name: actionGroupName
-	location: 'global'
-	properties: {
-		enabled: true
-		groupShortName: actionGroupShort
-		logicAppReceivers: [
-			{
-				name: 'cap-fallback-la'
-				resourceId: wf.id
-				callbackUrl: wfTriggerCallback
-				useCommonAlertSchema: true
-			}
-		]
-	}
+ name: actionGroupName
+ location: 'global'
+ properties: {
+  enabled: true
+  groupShortName: actionGroupShort
+  logicAppReceivers: [
+   {
+    name: 'cap-fallback-la'
+    resourceId: wf.id
+    callbackUrl: wfTriggerCallback
+    useCommonAlertSchema: true
+   }
+  ]
+ }
 }
 
 // Activity Log Alert for capacity-related failures
 resource ala 'Microsoft.Insights/activityLogAlerts@2020-10-01' = {
-	name: 'cap-activity-alert'
-	location: 'global'
-	properties: {
-		enabled: true
-		scopes: [ subscription().id ]
-		condition: {
-			allOf: [
-				{ field: 'status', equals: 'Failed' }
-				{ field: 'category', equals: 'Administrative' }
-				// Match common capacity errors embedded in properties
-				{ field: 'properties', containsAny: [ 'AllocationFailure', 'SKUNotAvailable', 'QuotaExceeded', 'Overconstrained' ] }
-			]
-		}
-		actions: {
-			actionGroups: [ { actionGroupId: ag.id } ]
-		}
-		description: 'Route capacity allocation/quota failures to Logic App for auto-remediation.'
-	}
+ name: 'cap-activity-alert'
+ location: 'global'
+ properties: {
+  enabled: true
+  scopes: [ subscription().id ]
+  condition: {
+   allOf: [
+    { field: 'status', equals: 'Failed' }
+    { field: 'category', equals: 'Administrative' }
+    // Match common capacity errors embedded in properties
+    { field: 'properties', containsAny: [ 'AllocationFailure', 'SKUNotAvailable', 'QuotaExceeded', 'Overconstrained' ] }
+   ]
+  }
+  actions: {
+   actionGroups: [ { actionGroupId: ag.id } ]
+  }
+  description: 'Route capacity allocation/quota failures to Logic App for auto-remediation.'
+ }
 }
 
 // Scheduled Query (KQL) Alert over Activity Logs (or over AzureActivity in LAW)
 resource kql 'Microsoft.Insights/scheduledQueryRules@2023-12-01' = {
-	name: 'cap-kql-alert'
-	location: location
-	properties: {
-		enabled: true
-		displayName: 'Capacity allocation failures (KQL)'
-		description: 'Detect allocation/quota failures via KQL and invoke action group.'
-		severity: 2
-		evaluationFrequency: 'PT5M'
-		windowSize: 'PT15M'
-		criteria: {
-			allOf: [
-				{
-					query: '''
+ name: 'cap-kql-alert'
+ location: location
+ properties: {
+  enabled: true
+  displayName: 'Capacity allocation failures (KQL)'
+  description: 'Detect allocation/quota failures via KQL and invoke action group.'
+  severity: 2
+  evaluationFrequency: 'PT5M'
+  windowSize: 'PT15M'
+  criteria: {
+   allOf: [
+    {
+     query: '''
 AzureActivity
 | where TimeGenerated > ago(15m)
 | where ActivityStatusValue == "Failed"
 | where Properties has_any ("AllocationFailure","SKUNotAvailable","QuotaExceeded","Overconstrained")
 | summarize failures = count()
 '''
-					timeAggregation: 'Count'
-					operator: 'GreaterThan'
-					threshold: 0
-				}
-			]
-		}
-		scopes: [ lawResourceId ]
-		actions: {
-			actionGroups: [ ag.id ]
-			customProperties: {
-				scenario: 'capacity-fallback'
-			}
-		}
-		autoMitigate: true
-	}
+     timeAggregation: 'Count'
+     operator: 'GreaterThan'
+     threshold: 0
+    }
+   ]
+  }
+  scopes: [ lawResourceId ]
+  actions: {
+   actionGroups: [ ag.id ]
+   customProperties: {
+    scenario: 'capacity-fallback'
+   }
+  }
+  autoMitigate: true
+ }
 }
 ```
 
 Notes
+
 - If you prefer, use Azure Verified Modules instead of raw resources: action group (avm/res/insights/action-group), activity log alert (avm/res/insights/activity-log-alert), scheduled query rule (avm/res/insights/scheduled-query-rule), logic app (avm/res/logic/workflow).
 - For private Logic App ingress, swap to a function receiver in the Action Group and authorize with an AAD app or MSI.
 
 ## SKU/Region fallback playbook
 
 - Decision tree
+
 ```
 Start → Try Primary SKU in Primary Region (any AZ)
-	├─ Success → Done
-	└─ Fail (AllocationFailure/SKUNotAvailable)
-			→ Try Alt SKU in Primary Region (any AZ)
-					├─ Success → Done
-					└─ Fail → Try Primary SKU in Secondary Region (any AZ)
-								├─ Success → Done
-								└─ Fail → Queue/Defer, or escalate (quota/capacity ticket)
+ ├─ Success → Done
+ └─ Fail (AllocationFailure/SKUNotAvailable)
+   → Try Alt SKU in Primary Region (any AZ)
+     ├─ Success → Done
+     └─ Fail → Try Primary SKU in Secondary Region (any AZ)
+        ├─ Success → Done
+        └─ Fail → Queue/Defer, or escalate (quota/capacity ticket)
 ```
 
 - Inputs
-	- sku_allowlist: [D4s_v5, D2s_v5, E4s_v5]
-	- region_priority: [eastus, eastus2, centralus]
-	- constraints: requireAcceleratedNetworking=true, zones=any
+- sku_allowlist: [D4s_v5, D2s_v5, E4s_v5]
+- region_priority: [eastus, eastus2, centralus]
+- constraints: requireAcceleratedNetworking=true, zones=any
 
 - Outputs
-	- Selected deployment tuple: (region, zone, sku)
-	- Incident created if no viable path found
+- Selected deployment tuple: (region, zone, sku)
+- Incident created if no viable path found
 
 ## AKS- and PaaS-specific guidance
 
 - AKS
-	- Multiple node pools with different VM sizes and zones
-	- Use Cluster Autoscaler and Pod PriorityClasses for critical workloads
-	- Consider virtual nodes (ACI) for burst
-	- Pre-pull container images to reduce cold-start contention
-	- For GPUs, pre-create tainted GPU pools and schedule with tolerations
+- Multiple node pools with different VM sizes and zones
+- Use Cluster Autoscaler and Pod PriorityClasses for critical workloads
+- Consider virtual nodes (ACI) for burst
+- Pre-pull container images to reduce cold-start contention
+- For GPUs, pre-create tainted GPU pools and schedule with tolerations
 
 - App Service / Functions
-	- Use multiple worker tiers and regional deployments with Traffic Manager/Front Door
-	- For Premium plans, pre-warm instances; use scale-out rules with headroom
-	- Consumption plans: plan for throttling and cold starts; consider Premium for predictability
+- Use multiple worker tiers and regional deployments with Traffic Manager/Front Door
+- For Premium plans, pre-warm instances; use scale-out rules with headroom
+- Consumption plans: plan for throttling and cold starts; consider Premium for predictability
 
 - Databases
-	- For SQL MI or Hyperscale, plan capacity with HA/DR replicas in paired regions
-	- Use ZRS/GRS storage where applicable; monitor IO caps
+- For SQL MI or Hyperscale, plan capacity with HA/DR replicas in paired regions
+- Use ZRS/GRS storage where applicable; monitor IO caps
 
 ## Testing, drill, and validation
 
@@ -623,7 +617,7 @@ Start → Try Primary SKU in Primary Region (any AZ)
 
 <!-- START BADGE -->
 <div align="center">
-  <img src="https://img.shields.io/badge/Total%20views-1332-limegreen" alt="Total views">
-  <p>Refresh Date: 2025-08-20</p>
+  <img src="https://img.shields.io/badge/Total%20views-1420-limegreen" alt="Total views">
+  <p>Refresh Date: 2025-08-21</p>
 </div>
 <!-- END BADGE -->
