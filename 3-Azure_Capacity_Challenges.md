@@ -307,6 +307,7 @@ az vm list-skus --location eastus --output table | Select-String D4s_v5
   - Service Health: Regional capacity advisories for target regions
 
 - KQL alert (activity failures)
+
 ```kql
 AzureActivity
 | where TimeGenerated > ago(15m)
@@ -340,6 +341,7 @@ AzureActivity
   - Pipeline reconciles desired vs actual and raises requests ahead of scale events
 
 - Example outline (PowerShell pseudocode)
+
 ```powershell
 $desired = @(
  @{ region='eastus';  family='Dsv5'; vcpus=200 },
@@ -403,6 +405,7 @@ alerts:
 ```
 
 Guidance
+
 - Source-control the schema; bump version when policy changes. Validate in CI before deploys.
 - Feed this into your quota reconciler and your fallback selector to keep behaviors consistent.
 
@@ -541,12 +544,14 @@ AzureActivity
 ```
 
 Notes
+
 - If you prefer, use Azure Verified Modules instead of raw resources: action group (avm/res/insights/action-group), activity log alert (avm/res/insights/activity-log-alert), scheduled query rule (avm/res/insights/scheduled-query-rule), logic app (avm/res/logic/workflow).
 - For private Logic App ingress, swap to a function receiver in the Action Group and authorize with an AAD app or MSI.
 
 ## SKU/Region fallback playbook
 
 - Decision tree
+
 ```
 Start → Try Primary SKU in Primary Region (any AZ)
  ├─ Success → Done
@@ -559,31 +564,31 @@ Start → Try Primary SKU in Primary Region (any AZ)
 ```
 
 - Inputs
- - sku_allowlist: [D4s_v5, D2s_v5, E4s_v5]
- - region_priority: [eastus, eastus2, centralus]
- - constraints: requireAcceleratedNetworking=true, zones=any
+- sku_allowlist: [D4s_v5, D2s_v5, E4s_v5]
+- region_priority: [eastus, eastus2, centralus]
+- constraints: requireAcceleratedNetworking=true, zones=any
 
 - Outputs
- - Selected deployment tuple: (region, zone, sku)
- - Incident created if no viable path found
+- Selected deployment tuple: (region, zone, sku)
+- Incident created if no viable path found
 
 ## AKS- and PaaS-specific guidance
 
 - AKS
- - Multiple node pools with different VM sizes and zones
- - Use Cluster Autoscaler and Pod PriorityClasses for critical workloads
- - Consider virtual nodes (ACI) for burst
- - Pre-pull container images to reduce cold-start contention
- - For GPUs, pre-create tainted GPU pools and schedule with tolerations
+- Multiple node pools with different VM sizes and zones
+- Use Cluster Autoscaler and Pod PriorityClasses for critical workloads
+- Consider virtual nodes (ACI) for burst
+- Pre-pull container images to reduce cold-start contention
+- For GPUs, pre-create tainted GPU pools and schedule with tolerations
 
 - App Service / Functions
- - Use multiple worker tiers and regional deployments with Traffic Manager/Front Door
- - For Premium plans, pre-warm instances; use scale-out rules with headroom
- - Consumption plans: plan for throttling and cold starts; consider Premium for predictability
+- Use multiple worker tiers and regional deployments with Traffic Manager/Front Door
+- For Premium plans, pre-warm instances; use scale-out rules with headroom
+- Consumption plans: plan for throttling and cold starts; consider Premium for predictability
 
 - Databases
- - For SQL MI or Hyperscale, plan capacity with HA/DR replicas in paired regions
- - Use ZRS/GRS storage where applicable; monitor IO caps
+- For SQL MI or Hyperscale, plan capacity with HA/DR replicas in paired regions
+- Use ZRS/GRS storage where applicable; monitor IO caps
 
 ## Testing, drill, and validation
 

@@ -136,6 +136,7 @@ Last updated: 2025-08-20
 <summary><strong>Popular IaC Tools</strong></summary>
 
 - **Terraform**: Multi-cloud, HCL syntax, provider model
+
   ```hcl
   resource "azurerm_kubernetes_cluster" "example" {
     name                = "example-aks"
@@ -157,6 +158,7 @@ Last updated: 2025-08-20
   ```
 
 - **ARM Templates/Bicep**: Azure-native, JSON/declarative syntax
+
   ```bicep
   resource aks 'Microsoft.ContainerService/managedClusters@2021-10-01' = {
     name: 'example-aks'
@@ -339,6 +341,7 @@ Policy-driven operations enable organizations to enforce compliance, security, a
 <summary><strong>Azure Policy Examples</strong></summary>
 
 - **Enforce Tag Usage**:
+
   ```json
   {
     "properties": {
@@ -367,6 +370,7 @@ Policy-driven operations enable organizations to enforce compliance, security, a
   ```
 
 - **Allowed VM Sizes**:
+
   ```json
   {
     "properties": {
@@ -416,6 +420,7 @@ Policy-driven operations enable organizations to enforce compliance, security, a
 - **Azure Policy for AKS**: Built-in and custom policies for AKS
 
 Example Gatekeeper constraint template:
+
 ```yaml
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
@@ -467,6 +472,7 @@ spec:
 - **JenkinsX**: CI/CD for Kubernetes with GitOps workflows
 
 Example Flux configuration:
+
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
@@ -545,6 +551,7 @@ spec:
 - **Workbooks**: Interactive reports
 
 Example KQL query for container resource usage:
+
 ```kusto
 ContainerLog
 | where TimeGenerated > ago(1h)
@@ -559,6 +566,7 @@ ContainerLog
 <summary><strong>Prometheus and Grafana Setup for Kubernetes</strong></summary>
 
 Prometheus Operator Helm installation:
+
 ```bash
 # Add Prometheus Helm repository
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -573,6 +581,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 ```
 
 Service Monitor example:
+
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -667,6 +676,7 @@ az aks update \
 ```
 
 Terraform configuration:
+
 ```hcl
 resource "azurerm_kubernetes_cluster" "example" {
   # ... other configuration ...
@@ -766,6 +776,7 @@ public static class KubernetesScaler
 <summary><strong>Event-Driven Scaling with KEDA</strong></summary>
 
 KEDA (Kubernetes Event-driven Autoscaling) installation:
+
 ```bash
 helm repo add kedacore https://kedacore.github.io/charts
 helm repo update
@@ -773,6 +784,7 @@ helm install keda kedacore/keda --namespace keda --create-namespace
 ```
 
 KEDA ScaledObject for Azure Service Bus queue:
+
 ```yaml
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
@@ -837,6 +849,7 @@ spec:
 ```
 
 Pod using the secrets:
+
 ```yaml
 kind: Pod
 apiVersion: v1
@@ -868,6 +881,7 @@ spec:
 <summary><strong>Container Image Scanning</strong></summary>
 
 Azure DevOps pipeline with container scanning:
+
 ```yaml
 trigger:
 - main
@@ -900,6 +914,7 @@ steps:
 ```
 
 GitHub Action with Trivy scanner:
+
 ```yaml
 name: Build and Scan
 
@@ -989,6 +1004,7 @@ foreach ($vm in $vms) {
 <summary><strong>AKS Cost Optimization Automation</strong></summary>
 
 - **Node Pool Autoscaling**:
+
   ```bash
   az aks nodepool update \
     --resource-group myResourceGroup \
@@ -1000,6 +1016,7 @@ foreach ($vm in $vms) {
   ```
 
 - **Spot Instances for Batch Workloads**:
+
   ```yaml
   apiVersion: apps/v1
   kind: Deployment
@@ -1028,6 +1045,7 @@ foreach ($vm in $vms) {
   ```
 
 - **Resource Requests and Limits Optimization**:
+
   ```yaml
   apiVersion: v1
   kind: Pod
@@ -1110,6 +1128,7 @@ foreach ($vm in $vmList) {
 <summary><strong>Kubernetes Cluster DR Strategy</strong></summary>
 
 - **Velero Backup Setup**:
+
   ```bash
   # Install Velero
   velero install \
@@ -1129,6 +1148,7 @@ foreach ($vm in $vmList) {
   ```
 
 - **Cross-Region Application Deployment**:
+
   ```yaml
   apiVersion: apps/v1
   kind: Deployment
@@ -1289,4 +1309,3 @@ foreach ($vm in $vmList) {
   <p>Refresh Date: 2025-08-20</p>
 </div>
 <!-- END BADGE -->
-

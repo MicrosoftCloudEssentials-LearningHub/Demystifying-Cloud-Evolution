@@ -115,6 +115,7 @@ Last updated: 2025-08-20
 - **Zero-Water Cooling**: Adiabatic systems to minimize water consumption
 
 Example datacenter PUE (Power Usage Effectiveness) comparison:
+
 ```
 Industry Average Datacenter: 1.67 PUE
 Microsoft Azure Datacenter: 1.12 PUE
@@ -188,6 +189,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
 <summary><strong>Software-Defined Networking</strong></summary>
 
 - **Azure Virtual Network (VNet)**:
+
   ```json
   {
     "name": "production-vnet",
@@ -262,6 +264,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
   - Geo-replicated across paired regions
 
 - **Storage Virtualization**:
+
   ```
                        ┌───────────────────┐
                        │ Storage Front-End │
@@ -339,6 +342,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
   - GPU and FPGA node pools
 
 - **Container Networking**:
+
   ```
   ┌─────────────────────────────────────────────────────┐
   │                   Azure VNet                         │
@@ -382,6 +386,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
 <summary><strong>Azure Resource Manager Architecture</strong></summary>
 
 - **Control Plane Design**:
+
   ```
   ┌───────────────────────────────────────────────────┐
   │                  Client Interfaces                 │
@@ -428,6 +433,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
 <summary><strong>Governance Implementation</strong></summary>
 
 - **Azure Policy**:
+
   ```json
   {
     "properties": {
@@ -484,6 +490,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
   - Automatic tuning
 
 - **Cosmos DB**:
+
   ```
   ┌─────────────────────────────────────────────────┐
   │               Global Distribution                │
@@ -553,6 +560,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
   - Result-set caching
 
 - **Spark Integration**:
+
   ```
   ┌───────────────────────────────────────────────────┐
   │                Synapse Workspace                   │
@@ -608,6 +616,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
 <summary><strong>API Management Architecture</strong></summary>
 
 - **Multi-Tiered Gateway**:
+
   ```
   ┌─────────────────────────┐     ┌─────────────────────────┐
   │   Client Applications   │     │      API Publishers     │
@@ -686,6 +695,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
   - Identity protection
 
 - **Managed Identities**:
+
   ```
   ┌───────────────────────────────────────────────────┐
   │                   Azure Service                    │
@@ -748,6 +758,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
 <summary><strong>Azure Monitor Architecture</strong></summary>
 
 - **Data Collection Pipeline**:
+
   ```
   ┌───────────────────────────────────────────────────┐
   │                   Data Sources                     │
@@ -828,6 +839,7 @@ This means Azure datacenters use approximately 33% less energy for cooling and p
 <summary><strong>Resource Orchestration Flow</strong></summary>
 
 VM Provisioning Process:
+
 ```
 1. User Request (ARM Template/Portal/CLI)
    │
@@ -914,6 +926,7 @@ VM Provisioning Process:
 ```
 
 Layer Interactions:
+
 1. **Developer Workflow**:
    - Application code written and tested locally
    - Code committed to repository (GitHub/Azure Repos)
@@ -962,6 +975,7 @@ Layer Interactions:
 ```
 
 Layer Interactions:
+
 1. **Data Preparation**:
    - Raw data stored in Data Lake Storage
    - Data Factory pipelines for ETL processing
@@ -1034,6 +1048,7 @@ Layer Interactions:
 <summary><strong>Reliability Design Patterns</strong></summary>
 
 - **Multi-Region Resilience**:
+
   ```
   ┌─────────────────────────────────────────────────┐
   │              Traffic Manager/Front Door          │
@@ -1069,4 +1084,3 @@ Layer Interactions:
   <p>Refresh Date: 2025-08-20</p>
 </div>
 <!-- END BADGE -->
-
