@@ -107,7 +107,7 @@ Last updated: 2025-08-21
 <details>
 <summary><strong>How to confirm and triage</strong></summary>
 
-- Check Service Health and Resource Health for regional advisories
+- Check [Service Health](https://azure.microsoft.com/en-us/get-started/azure-portal/service-health/?msockid=38ec3806873362243e122ce086486339) and [Resource Health](https://azure.status.microsoft/en-us/status) for regional advisories
 - Query Activity Logs for failed deployments and error codes
 - Use What-If before large template rollouts to detect quota gaps
 - Attempt allocation in alternate zone or region to isolate scope
@@ -304,7 +304,7 @@ az vm list-skus --location eastus --output table | Select-String D4s_v5
 - Alerts to create
   - Activity log alert: AllocationFailure / SKUNotAvailable / QuotaExceeded events
   - Metric alerts: VMSS pending instances, AKS Pending pods > N for M minutes
-  - Service Health: Regional capacity advisories for target regions
+  - [Service Health](https://azure.microsoft.com/en-us/get-started/azure-portal/service-health/?msockid=38ec3806873362243e122ce086486339): Regional capacity advisories for target regions
 
 - KQL alert (activity failures)
 
