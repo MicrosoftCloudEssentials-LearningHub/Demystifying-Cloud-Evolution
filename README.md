@@ -12,6 +12,8 @@ Last updated: 2025-08-20
 
 -----------------------------
 
+> A landing zone is a general `cloud framework that sets up the core structure for all workloads`. Each use case (like an app, data pipeline, or API) then builds on top of this framework, using the `same environments (Dev → Test → UAT → Prod) and CI/CD pipelines to move code safely into production.` It’s general by design, but `applied per use case.`
+
 > [!IMPORTANT]
 > This community demo is for learning only and uses public documentation. It blends history, theory, and local-first labs (no cloud sign-in required). For production guidance, cost/security/compliance, and Azure-specific deployment patterns, contact Microsoft directly: [Microsoft Sales and Support](https://support.microsoft.com/contactus?ContactUsExperienceEntryPointAssetId=S.HP.SMC-HOME)
 
